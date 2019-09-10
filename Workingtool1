@@ -1,0 +1,672 @@
+#All code is the product of work by Rob Dewar, Chris Gavin, and Oliver Tearne
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+
+
+<div id="root">
+    <h1 id="title"></h1>
+    <div align="right">
+        <button type="button" class="reset" onclick="reset()">Reset</button>
+    </div>
+
+    <div id="main"></div>
+</div>
+<button id = "T1button" onclick="show1()">list 1</button>
+<button id = "T2button" onclick="show2()">list 2</button>
+<button id = "T3button" onclick="show3()">list 3</button>
+<button id = "T4button" onclick="show4()">list 4</button>
+<button id = "T5button" onclick="show5()">Risk Assessments list</button>
+<table style = "width:300px; height: 400px; overflow:scroll; display:none" id = "table1">
+    <tr>
+          <tr><td>Aujesky's disease
+          </td></tr>
+          <tr><td>Aino virus
+          </td></tr>
+          <tr><td>Avian Influenza
+          </td></tr>
+          <tr><td>Bluetongue
+          </td></tr>
+          <tr><td>Classical Swine Fever
+          </td></tr>
+          <tr><td>Equine viral arteritis
+          </td></tr>
+          <tr><td>Foot and Mouth Disease
+          </td></tr>
+          <tr><td>Rabies
+          </td></tr>
+          <tr><td>West Nile fever
+          </td></tr>
+          <tr><td>Bovine Spongiform Encephalopathy
+          </td></tr>
+          <tr><td>Bovine Tuberculosis
+          </td></tr>
+          <tr><td>BVD
+          </td></tr>
+          <tr><td>Campylobacteriosis
+          </td></tr>
+          <tr><td>Equine Influenza
+          </td></tr>
+          <tr><td>Foot Rot
+          </td></tr>
+          <tr><td>PMWS
+          </td></tr>
+          <tr><td>Salmonella
+          </td></tr>
+          <tr><td>Toxoplasmosis (cats)
+          </td></tr>
+          <tr><td>Toxoplasmosis (sheep)
+          </td></tr>
+          <tr><td>VTEC
+          </td></tr>
+          <tr><td>Lameness
+          </td></tr>
+          <tr><td>Sow Crates
+          </td></tr>
+ </tr>
+ </table>
+ <table style = "width:300px; height: 400px; overflow:scroll; display:none" id = "table2">
+
+    <tr>
+          <tr><td>African Horse sickness
+          </td></tr>
+          <tr><td>African Swine fever
+          </td></tr>
+          <tr><td>Aino virus
+          </td></tr>
+          <tr><td>Akabane virus
+          </td></tr>
+          <tr><td>Alkhurma haemoragic fever
+          </td></tr>
+          <tr><td>Bhanja virus
+          </td></tr>
+          <tr><td>bluetongue
+          </td></tr>
+          <tr><td>bovine ephemeral fever
+          </td></tr>
+          <tr><td>Buyamwera virus 
+          </td></tr>
+          <tr><td>Crimean-Congo haemoragic fever
+          </td></tr>
+          <tr><td>eastern equine encephalitus
+          </td></tr>
+          <tr><td>epizootic haemoragic disease
+          </td></tr>
+          <tr><td>equine encephalosis
+          </td></tr>
+          <tr><td>Getah virus
+          </td></tr>
+          <tr><td>heartwater
+          </td></tr>
+          <tr><td>hepatozoonosis (H.canis)
+          </td></tr>
+          <tr><td>Highlands J. virus
+          </td></tr>
+          <tr><td>Japanese encephalitis
+          </td></tr>
+          <tr><td>Kotonkan virus
+          </td></tr>
+          <tr><td>L. infantum
+          </td></tr>
+          <tr><td>main drain virus
+          </td></tr>
+          <tr><td>Middleburg virus
+          </td></tr>
+          <tr><td>Nairobi sheep disease
+          </td></tr>
+          <tr><td>Palyam virus
+          </td></tr>
+          <tr><td>Peruvian horse sickness
+          </td></tr>
+          <tr><td>Rift valley fever
+          </td></tr>
+          <tr><td>Saint Louis encephalitis
+          </td></tr>
+          <tr> <td>Schmallenberg virus 
+          </td></tr>
+          <tr><td>Shuni virus
+          </td></tr>
+          <tr><td>Thogoto virus
+          </td></tr>
+          <tr><td>Venezuelan equine encephalitis
+          </td></tr>
+          <tr><td>vesicular stomatitis
+          </td></tr>
+          <tr><td>Wesselbron virus 
+          </td></tr>
+          <tr><td>West Nile fever
+          </td></tr>   
+          <tr><td>Western equine encephalitis
+          </td></tr>
+          <tr><td>Yunnan orbivirus 
+          </td></tr>
+          <tr><td>High Pathogenicity Avian influenza
+          </td></tr>
+          <tr><td>Newcastle Disease
+          </td></tr>
+          <tr><td>Low Pathogenicity Avian Influenza
+          </td></tr>
+          <tr><td>bluetongue
+          </td></tr>
+          <tr><td>Classical Swine fever
+          </td></tr>
+          <tr><td>Crimean-Congo haemoragic fever
+             </td></tr>
+ </tr>
+ </table>
+ 
+ <table style = "width:300px; height: 400px; overflow:scroll; display:none" id = "table3">
+
+    <tr>
+          <tr><td>Anisakidae and Anisakiasis
+          </td></tr>
+          <tr><td>Ascaris spp.
+          </td></tr>
+          <tr><td>Blantidium coli
+          </td></tr>
+          <tr><td>Cryptosporidiosis
+          </td></tr>
+          <tr><td>Diphyllobothrium spp.
+          </td></tr>
+          <tr><td>Echinococcus granulosus
+          </td></tr>
+          <tr><td>Echinococcus multicularis
+          </td></tr>
+          <tr><td>Entamoeba hystolytica
+          </td></tr>
+          <tr><td>Fasciola spp.
+          </td></tr>
+          <tr><td>Giardia duodenalis
+          </td></tr>
+          <tr><td>Heterophidae and Heterophidiasis
+          </td></tr>
+          <tr><td>Opsthorchidae 
+          </td></tr>
+          <tr><td>Paragonimus spp.
+          </td></tr>
+          <tr><td>Sarcocystis spp.
+          </td></tr>
+          <tr><td>Spirometra spp.
+          </td></tr>
+          <tr><td>Taenia saginata
+          </td></tr>
+          <tr><td>Taenia solium
+          </td></tr>
+          <tr><td>Toxicara spp.
+          </td></tr>
+          <tr><td>Toxoplasma gondii
+          </td></tr>
+          <tr><td>Trichinella spp. Other than T.spiralis
+          </td></tr>
+          <tr><td>Trichinella spiralis
+          </td></tr>
+          <tr><td>Tichuris trichiura
+          </td></tr>
+          <tr><td>Trypanosoma cruzi
+          </td></tr>
+ </tr>
+ </table>
+ <table style = "width:300px; height: 400px; overflow:scroll; display:none" id = "table4">
+
+    <tr>
+          <tr><td>African Swine fever
+          </td></tr>
+          <tr><td>Aujesky's disease
+          </td></tr>
+          <tr><td>Avian Influenza
+          </td></tr>
+          <tr><td>Bluetongue
+          </td></tr>
+          <tr><td>Classical Swine Fever
+          </td></tr>
+          <tr><td>Equine Viral Arteritis
+          </td></tr>
+          <tr><td>Foot-and-Mouth Disease
+          </td></tr>
+          <tr><td>Rabies
+          </td></tr>
+          <tr><td>West Nile Fever
+          </td></tr>
+          <tr><td>Bovine Spongiform Encephalopathy
+          </td></tr>
+          <tr><td>Bovine Tuberculosis
+          </td></tr>
+          <tr><td>BVD
+          </td></tr>
+          <tr><td>Campylobacteriosis
+          </td></tr>
+          <tr><td>Equine Influenza
+          </td></tr>
+          <tr><td>Foot Rot
+          </td></tr>
+          <tr><td>PMWS
+          </td></tr>
+          <tr><td>Salmonella spp.
+          </td></tr>
+          <tr><td>Toxoplasmosis (cats)
+          </td></tr>
+          <tr><td>Toxoplasmosis (sheep)
+          </td></tr>
+          <tr><td>VTEC
+          </td></tr>
+          <tr><td>Lameness
+          </td></tr>
+          <tr><td>Sow Crates
+          </td></tr>
+ </tr>
+ </table>
+ <table style = "width:300px; height: 400px; overflow:scroll; display:none" id = "table5">
+    <tr>
+        <tr><td ><a href = "https://www.researchgate.net/publication/51084035_Assessing_the_risk_of_disease_introduction_in_imports">IDM Risk of Incursion Tool</a>
+        </td></tr>
+        <tr><td ><a href = "https://ecdc.europa.eu/en/publications-data/ecdc-tool-prioritisation-infectious-disease-threats">ECDC tool for prioritisation of infectious diseases</a>
+        </td></tr>
+        <tr><td><a href = "https://www.researchgate.net/publication/223982140_Multidisciplinary_and_Evidence-based_Method_for_Prioritizing_Diseases_of_Food-producing_Animals_and_Zoonoses">Belgian Evidence based prioritisaton framework</a>
+        </td></tr>
+        <tr><td><a href = "https://www.who.int/foodsafety/publications/mra_23/en/">Multicriteria based food borne parasite ranking system</a>
+        </td></tr>
+        <tr><td><a href = "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online">Simplified generic prioritisation tool (France)</a>
+        </td></tr>
+        <tr><td><a href = "http://www.callistoproject.eu/callisto/">Prioritisation of companion animal transmissible diseases</a>
+        </td></tr>
+        <tr><td><a href = "https://data.gov.uk/dataset/d2bd7435-6ebb-41f0-a34c-fe264bb4ed21/emerging-threats-highlight-report-ethir">Emerging threat highlight report</a>
+        </td></tr>
+        <tr><td><a href = "https://www.ncbi.nlm.nih.gov/pubmed/27707948">D2R2</a>
+        </td></tr>
+        <tr><td><a href = "https://www.wecr.wur.nl/mintrisk/">MINTRISK</a>
+        </td></tr>
+        <tr><td><a href = "https://www.researchgate.net/publication/332997045_A_spatial_risk_assessment_model_framework_for_incursion_of_exotic_animal_disease_into_the_European_Union_Member_States">SPARE</a>
+        </td></tr>
+        <tr><td><a href = "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/761106/HAIRS_risk_assessment_processes.pdf">HAIRS RA Framework</a>
+        </td></tr>
+        <tr><td><a href = "http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf">OIE Qualitative Risk assessment framework</a>
+        </td></tr>
+        <tr><td><a href = "https://www.oie.int/doc/ged/D11250.PDF">OIE Quantitative Risk assessment framework</a>
+        </td></tr>
+        <tr><td><a href = "https://www.ncbi.nlm.nih.gov/pubmed/23569196">Monte-Carlo Simulation</a>
+        </td></tr>
+</tr>
+</table>
+
+<style>
+    body {
+        font-family: sans-serif;
+    }
+
+    h1 {
+        margin-left: 0.2em;
+    }
+
+    div#root,
+    div#notes {
+        max-width: 30em;
+        background-color: #EEE;
+        border: 1px solid #DDD;
+        padding: 0.3em;
+    }
+
+    div.buttons {
+        background: #CCC;
+        border: 1px solid #BBB;
+        padding: 0.2em;
+        margin: 0.1em;
+        margin-bottom: 0.5em;
+    }
+
+    button {
+        padding: 0.1em 0.4em;
+        margin: 0.2em;
+        display: block;
+        font-family: helvetica;
+        font-size: 16px;
+        font-weight: 100;
+        text-align: left;
+        color: #fff;
+        background: #688296;
+        border: 1px solid #555;
+        font-weight: 100;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #4B6C86;
+        border: 1px solid #000;
+    }
+
+    button.selected {
+        background: #363;
+    }
+
+    button.reset {
+        font-size: 75%;
+        background: #a33;
+    }
+
+    button.reset:hover {
+        background: #C33
+    }
+
+    #T1button {
+        position: absolute;
+        left: 500px;
+        top: 10px;
+    }
+    #T2button {
+        position: absolute;
+        left: 570px;
+        top: 10px;
+    }
+    #T3button {
+        position: absolute;
+        left: 640px;
+        top: 10px;
+    }
+    #T4button {
+        position: absolute;
+        left: 710px;
+        top: 10px;
+    }
+    #T5button {
+        position: absolute;
+        left: 780px;
+        top: 10px;
+    }
+    table {
+        position: absolute;
+        left: 500px;
+        top: 40px;
+    }
+    a.link {
+        color: black;
+        background:palegoldenrod;
+        text-decoration: none;
+    }
+    a:visited{
+        color: black;
+        text-decoration: none;
+    }
+    a:hover{
+        color: hotpink;
+        text-decoration: none;
+    }
+    a:active{
+        text-decoration: none;
+    }
+
+</style>
+
+
+
+<script type="text/javascript">
+    let main = document.getElementById("main");
+    let rootData = getData();
+    // passes the whole data structure through the script 
+    document.getElementById("title").innerText = rootData.title
+
+    askQuestion(rootData);
+    // attributes a level to the question asked, level 0 being the default, the root of the tree
+    function askQuestion(subTree, levelIdx = 0) {
+        let levelDiv = document.createElement("div");
+        levelDiv.setAttribute("id","Div1");
+        levelDiv.className = "level";
+        levelDiv.id = levelIdx;
+        main.appendChild(levelDiv);
+        //if there is an outcome there will be no more questions, otherwise questions will feed in
+        if (subTree.hasOwnProperty('outcome'))
+            levelDiv.appendChild(document.createTextNode(subTree.outcome));
+        else {
+            levelDiv.appendChild(document.createTextNode(subTree.question));
+            showOptions();
+        }
+        //creates the responses panel
+        function showOptions() {
+            let responsePanel = document.createElement("div");
+            responsePanel.className = "buttons";
+            levelDiv.appendChild(responsePanel);
+            //creates a button with the answers on
+            subTree.responses.forEach(response => {
+                let btn = document.createElement("button");
+                btn.type = "button";
+                btn.innerHTML = response.answer;
+                //Removes any questions after a given point should you go back and click on a different answer to previously
+                //Also will add the next level question below using askQuestion function
+                //Also will remove the selected formatting should a different option be taken to before.
+                btn.onclick = () => {
+                    removeDescendantsOf(levelIdx);
+                    askQuestion(response, levelIdx + 1);
+                    responsePanel
+                        .querySelectorAll("button")
+                        .forEach(b => {
+                            if (b == btn) b.className = "selected"
+                            else b.classList.remove("selected")
+                        });
+                }
+                responsePanel.appendChild(btn);
+            })
+        }
+    }
+
+    function removeDescendantsOf(levelIdx) {
+        let len = main.childNodes.length;
+
+        [...main.querySelectorAll("div.level")]
+            .filter(d => d.id > levelIdx)
+            .forEach(d => main.removeChild(d));
+    }
+
+    function reset() {
+        removeDescendantsOf(0);
+        main.querySelectorAll("button")
+            .forEach(b => b.classList.remove("selected"));
+    }
+
+function show1(){
+    var t1 = document.getElementById("table1");
+    if (t1.style.display === "block"){
+        t1.style.display = "none";}
+        else {
+            t1.style.display = "block";
+        }
+    document.getElementById("table2").style.display = "none";
+    document.getElementById("table3").style.display = "none";
+    document.getElementById("table4").style.display = "none";
+    document.getElementById("table5").style.display = "none";
+}
+function show2(){
+    var t1 = document.getElementById("table2");
+    if (t1.style.display === "block"){
+        t1.style.display = "none";}
+        else {
+            t1.style.display = "block";
+        }
+    document.getElementById("table1").style.display = "none";
+    document.getElementById("table3").style.display = "none";
+    document.getElementById("table4").style.display = "none";
+    document.getElementById("table5").style.display = "none";
+}
+function show3(){
+    var t1 = document.getElementById("table3");
+    if (t1.style.display === "block"){
+        t1.style.display = "none";}
+        else {
+            t1.style.display = "block";
+        }
+    document.getElementById("table1").style.display = "none";
+    document.getElementById("table2").style.display = "none";
+    document.getElementById("table4").style.display = "none";
+    document.getElementById("table5").style.display = "none";
+}
+function show4(){
+    var t1 = document.getElementById("table4");
+    if (t1.style.display === "block"){
+        t1.style.display = "none";}
+        else {
+            t1.style.display = "block";
+        };
+    document.getElementById("table1").style.display = "none";
+    document.getElementById("table2").style.display = "none";
+    document.getElementById("table3").style.display = "none";
+    document.getElementById("table5").style.display = "none";    
+}
+function show5(){
+    var t1 = document.getElementById("table5");
+    if (t1.style.display === "block"){
+        t1.style.display = "none";}
+        else {
+            t1.style.display = "block";
+        };
+    document.getElementById("table1").style.display = "none";
+    document.getElementById("table2").style.display = "none";
+    document.getElementById("table3").style.display = "none";
+    document.getElementById("table4").style.display = "none";
+}
+
+    function getData() {
+        return {
+            "title": "EJP decision making tool",
+            "question": "What are the core requirements of the risk assessment?",
+            "responses": [
+                {
+                    "answer": "Risk of incursion tool",
+                    "question": "Is the required tool for prioritisation or direct risk assessment?",
+                    "responses": [
+                        {
+                            "answer": "Prioritisation tool",
+                            "outcome": "ECDC qualitative risk tool, Belgian evidence based risk assessment tool"
+                        },
+                        {
+                            "answer": "Direct Risk Assessment",
+                            "question": "Is/are the disease(s) of interest known, if so, do they appear in list 2?",
+                            "responses": [
+                                {
+                                    "answer": "Yes",
+                                    "question": "Is your disease of interest Vector borne?",
+                                    "responses": [
+                                        {
+                                            "answer": "Yes",
+                                            "outcome": "MINTRISK"
+                                        },
+                                        {
+                                            "answer": "No",
+                                            "outcome": "SPARE"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "answer": "No",
+                                    "question": "What level of data is available for your disease of interest?",
+                                    "responses": [
+                                        {
+                                            "answer": "Epidemiological and/or trade data",
+                                            "outcome": "Monte Carlo Simulation, OIE quantitative risk assessment guidance"
+                                        },
+                                        {
+                                            "answer": "Limited",
+                                            "outcome": "OIE qualitative risk assessment framework"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "answer": "Social/public health/economic impact",
+                    "question": "Do you want the risk assessment for disease prioritisation or direct Risk assessment?",
+                    "responses": [
+                        {
+                            "answer": "Prioritisation tool",
+                            "question": "Is/are your disease(s) of interest known, and do they appear in list 3?",
+                            "responses": [
+                                {
+                                    "answer": "Yes",
+                                    "outcome": "Multicriteria based food borne parasite tanking system"
+                                },
+                                {
+                                    "answer": "No",
+                                    "question": "Does the disease of interest appear on list 4?",
+                                    "responses": [
+                                        {
+                                            "answer": "Yes",
+                                            "outcome": "D2R2"
+                                        },
+                                        {
+                                            "answer": "No",
+                                            "question": "Is/are the disease(s) of interest endemic or exotic?",
+                                            "responses": [
+                                                {
+                                                    "answer": "Exotic",
+                                                    "question": "Is the risk assessment for Companion animals?",
+                                                    "responses": [
+                                                        {
+                                                            "answer": "Yes",
+                                                            "outcome": "Prioritisation of companion animal diseases tool"
+                                                        },
+                                                        {
+                                                            "answer": "No",
+                                                            "outcome": "Belgian Multidisciplinary evidence based prioritisation tool, ECDC tool for the prioritisation of infectious diseases"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "answer": "Endemic",
+                                                    "outcome": "Simplified generic prioritisation tool (France)"
+                                                },
+                                                {
+                                                    "answer": "Both",
+                                                    "outcome": "Simplified generic prioritisation tool (France)"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "answer": "Direct Risk Assessment",
+                            "question": "Is the disease of interest known and does it appear in the list 1?",
+                            "responses": [
+                                {
+                                    "answer": "Yes",
+                                    "outcome": "Emerging Threat Highlight Report"
+                                },
+                                {
+                                    "answer": "No",
+                                    "question": "What level of data is available for your disease of interest?",
+                                    "responses": [
+                                        {
+                                            "answer": "Epidemiological and/or trade data",
+                                            "outcome": "Monte Carlo Simulation, OIE quantitative risk assessment guidance"
+                                        },
+                                        {
+                                            "answer": "Limited",
+                                            "outcome": "OIE qualitative risk assessment framework"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "answer": "Both",
+                    "question": "What level of data is available?",
+                    "responses": [
+                        {
+                            "answer": "Epidemiological and/or trade datasets",
+                            "outcome": "Monte Carlo Simulation, OIE quantitative risk assessment guidance"
+                        },
+                        {
+                            "answer": "Primarily qualitative data and expert opinion",
+                            "outcome": "Belgian Multidisciplinary evidence based prioritisation tool, ECDC tool for the prioritisation of infectious diseases"
+                        },
+                        {
+                            "answer": "Limited data",
+                            "outcome": "OIE qualitative risk assessment framework"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+</script>
