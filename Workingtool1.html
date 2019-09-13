@@ -10,7 +10,7 @@
 
     <div id="main"></div>
 </div>
-
+<table style="width:500px; height: 400px; overflow:scroll; display:block; border-collapse:collapse" id="index"></table>
 <table style="width:300px; height: 400px; overflow:scroll; display:none" id="table1">
     <tr>
     <tr>
@@ -494,6 +494,15 @@
         position: absolute;
         left: 500px;
         top: 40px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    tr {
+        border:1px solid black;
+    }
+   
+    td{
+        border:1px solid black;
     }
 
     a.link {
@@ -523,8 +532,19 @@
     let toolData = getTools();
     // passes the whole data structure through the script 
     document.getElementById("title").innerText = rootData.title
-
     askQuestion(rootData);
+
+
+    let index = document.getElementById("index");
+        toolData.tools.forEach(function(object) {
+            let tr = document.createElement("tr");
+            tr.innerHTML =  '<td>'+ object.name + '</td>' +
+            '<td>'+ object.info +'</td>';
+            tr.setAttribute("border", "solid")
+            index.appendChild(tr);
+        });
+
+
     // attributes a level to the question asked, level 0 being the default, the root of the tree
     function askQuestion(subTree, levelIdx = 0) {
         let levelDiv = document.createElement("div");
@@ -605,9 +625,12 @@
         removeDescendantsOf(0);
         main.querySelectorAll("button")
             .forEach(b => b.classList.remove("selected"));
+            hideAllLists();
+            showindex();
     }
 
     function hideAllLists() {
+        document.getElementById("index").style.display = "none";
         document.getElementById("table1").style.display = "none";
         document.getElementById("table2").style.display = "none";
         document.getElementById("table3").style.display = "none";
@@ -626,11 +649,15 @@
     function show4() {
         document.getElementById("table4").style.display = "block";
     }
+    function showindex(){
+        document.getElementById("index").style.display = "block";
+    }
 
     function getData() {
         return {
             "title": "EJP decision making tool",
             "question": "Do you require a rapid outcome to your risk assessment?",
+            "actions": "showindex()",
             "responses": [
                 {
                     "answer": "Yes",
@@ -807,7 +834,8 @@
                         },
                         {
                             "name": "Multicriteria based food borne parasite tanking system",
-                            "link": "https://www.who.int/foodsafety/publications/mra_23/en/"
+                            "link": "https://www.who.int/foodsafety/publications/mra_23/en/",
+                            "info": "The criteria in this tool were defined by expert opinion, ranking parasitic diseases in global terms. Their distribution, morbidity, and social, trade and economic impacts on host countries were assessed in tandem, though these were weighted with an 85% bias towards public health."
                         },
                         {
                             "name": "D2R2",
