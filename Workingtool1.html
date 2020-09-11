@@ -1,6 +1,54 @@
-#All code is the product of work by Rob Dewar, Chris Gavin, and Oliver Tearne
 <!DOCTYPE html>
 <meta charset="utf-8">
+<div class= "row" style="width: 1012px; height: 130px; background-color: white;">
+        <div class="column"> 
+   <a href = "https://ec.europa.eu/programmes/horizon2020/en/h2020-section/joint-programming-initiatives" target="_blank">
+   <img  style="width: 50%; max-height: 50%;" src="https://europa.eu/european-union/sites/europaeu/files/docs/body/flag_yellow_high.jpg" alt="European Union"></a></div>
+    <div class="column">
+    <a href="https://onehealthejp.eu/" target = "_blank"><img style="width: 50%; max-height: 50%;" src="https://onehealthejp.eu/wp-content/uploads/2020/01/One-Health-EJP-logo-3-1024x549.jpg" alt="One Health EJP">
+    </a></div>
+    <div class="column">
+    <a href = "https://onehealthejp.eu/jip-cohesive/" target = "_blank"><img style="width: 50%; max-height: 50%;" src="https://www.rivm.nl/sites/default/files/2019-01/logo_cohesive.jpg" alt="COHESIVE">
+    </a></div>
+
+
+</div>
+
+<div class="popup" onclick="caveats_func()">Purpose, Scope and Caveats
+    <span class="popuptext" id="myPopup">
+        <h1 class="hed">The EJP Secision Support Tool for One-Health Risk Assessment</h1>
+        <h2>Purpose, scope and caveats</h2>
+        <p>This tool is designed to help those who are new to the fields of risk assessment or One-Health find useful existing resources in a range of sub-disciplines.</p>
+<p>This tool will:</p>
+<ul>
+    <li>Showcase fourteen tools and guidance documents, providing links and summaries to each of these</li>
+    <li>Broadly assess your needs and limiations using a series of questions</li>
+    <li>Make suggestions on those needs and limitations</li>
+    <li>Be easily reset and adjusted for changing answers, allowing the user to explore many different paths</li>
+    <li>Aim to provide access to as many resources as possible</li>
+    <li>In the absence of the actual resource, provide links to publications outlining how they work and where they have succeeded historically</li>
+    <li>Be a good starting point to those less familiar with the field</li>
+</ul>
+<p>This tool will not:</p>
+<ul>
+    <li>Provide the definitive answer to any of the questions that are asked</li>
+    <li>Conduct risk assessment in of itself</li>
+    <li>Provide the definitive list of risk assessment tools and guidance documents</li>
+    <li>Record any of the responses given by the user</li>
+    <li>Show any risk assessment resources that are not related to the field of One-Health</li>
+</ul>
+<p>The tool is designed to be simple and user-friendly. Click anywhere in this box to get started!</p>
+
+
+
+
+    </span>
+  </div>
+
+
+<div class="footer">
+    <p>This project has received funding from the European Union’s Horizon 2020 research and innovation programme under Grant Agreement No 773830.</p>
+</div>
 
 <div id="root">
     <h1 id="title"></h1>
@@ -10,8 +58,8 @@
 
     <div id="main"></div>
 </div>
-<table style="width:500px; height: 400px; overflow:scroll; display:block; border-collapse:collapse" id="index"></table>
-<table style="width:300px; height: 400px; overflow:scroll; display:none" id="table1">
+<table class="table" id="index"></table>
+<table class="table" id="table1">
     <tr>
     <tr>
         <td>Animal Health Impact
@@ -38,7 +86,7 @@
         </td>
     </tr>
 </table>
-<table style="width:300px; height: 400px; overflow:scroll; display:none" id="table2">
+<table class= "table"; id="table2">
 
     <tr>
     <tr>
@@ -66,11 +114,11 @@
         </td>
     </tr>
     <tr>
-        <td>bluetongue
+        <td>Bluetongue
         </td>
     </tr>
     <tr>
-        <td>bovine ephemeral fever
+        <td>Bovine ephemeral fever
         </td>
     </tr>
     <tr>
@@ -82,15 +130,15 @@
         </td>
     </tr>
     <tr>
-        <td>eastern equine encephalitus
+        <td>Eastern equine encephalitus
         </td>
     </tr>
     <tr>
-        <td>epizootic haemoragic disease
+        <td>Epizootic haemoragic disease
         </td>
     </tr>
     <tr>
-        <td>equine encephalosis
+        <td>Equine encephalosis
         </td>
     </tr>
     <tr>
@@ -98,11 +146,11 @@
         </td>
     </tr>
     <tr>
-        <td>heartwater
+        <td>Heartwater
         </td>
     </tr>
     <tr>
-        <td>hepatozoonosis (H.canis)
+        <td>Hepatozoonosis (H.canis)
         </td>
     </tr>
     <tr>
@@ -122,7 +170,7 @@
         </td>
     </tr>
     <tr>
-        <td>main drain virus
+        <td>Main drain virus
         </td>
     </tr>
     <tr>
@@ -166,7 +214,7 @@
         </td>
     </tr>
     <tr>
-        <td>vesicular stomatitis
+        <td>Vesicular stomatitis
         </td>
     </tr>
     <tr>
@@ -198,7 +246,7 @@
         </td>
     </tr>
     <tr>
-        <td>bluetongue
+        <td>Bluetongue
         </td>
     </tr>
     <tr>
@@ -211,7 +259,7 @@
     </tr>
     </tr>
 </table>
-<table style="width:300px; height: 400px; overflow:scroll; display:none" id="table3">
+<table class="table" id="table3">
 
     <tr>
     <tr>
@@ -308,7 +356,7 @@
     </tr>
     </tr>
 </table>
-<table style="width:300px; height: 400px; overflow:scroll; display:none" id="table4">
+<table class="table" id="table4">
 
     <tr>
     <tr>
@@ -402,14 +450,119 @@
     </tr>
 </table>
 
+
+
+
 <style>
+
     body {
         font-family: sans-serif;
+        background-color: #cfe0e8;
     }
 
     h1 {
         margin-left: 0.2em;
     }
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.footer{
+position: fixed; 
+left: 0;
+bottom: 0;
+width: 100%; 
+height: 2.5rem; 
+background-color: orange; 
+color: black; 
+text-align: center;
+}
+/* Popup container */
+.popup {
+  position: absolute;
+  left: 550px;
+  top: 550px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: tomato;
+  border: 1px solid sienna;
+  border-radius: 6px;
+  padding: 10px;
+}
+ul {
+    list-style-position: outside;
+}
+li{
+    list-style-position: outside;
+}
+h1{margin-left: 10px;
+text-align: center;}
+h2{margin-left: 10px;
+text-align: center;}
+p{margin-left: 10px;}
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: visible;
+  width: 900px;
+  height: 500px;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 10%;
+  margin-left: -500px;
+  overflow: scroll;
+}
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: hidden;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+.popup .show {
+  visibility: hidden;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+.table{
+    width:500px;
+    height: 400px; 
+    overflow:scroll; 
+    display:none; 
+    background-color: #EEE;
+    position: absolute;
+    left: 520px;
+    top: 138px 
+}
 
     div#root,
     div#notes {
@@ -417,6 +570,10 @@
         background-color: #EEE;
         border: 1px solid #DDD;
         padding: 0.3em;
+        padding-bottom: 5rem;
+        padding-right: 2em;
+        
+
     }
 
     div.buttons {
@@ -526,6 +683,7 @@
     }
 </style>
 
+
 <script type="text/javascript">
     let main = document.getElementById("main");
     let rootData = getData();
@@ -538,11 +696,12 @@
     let index = document.getElementById("index");
         toolData.tools.forEach(function(object) {
             let tr = document.createElement("tr");
-            tr.innerHTML =  '<td>'+ object.name + '</td>' +
+            tr.innerHTML =  '<td href ='+object.link+'>'+ object.name +'</td>' +
             '<td>'+ object.info +'</td>';
             tr.setAttribute("border", "solid")
             index.appendChild(tr);
         });
+
 
 
     // attributes a level to the question asked, level 0 being the default, the root of the tree
@@ -653,9 +812,14 @@
         document.getElementById("index").style.display = "block";
     }
 
+
+    function caveats_func() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}    
     function getData() {
         return {
-            "title": "EJP decision making tool",
+            "title": "EJP Decision Support Tool",
             "question": "Do you require a rapid outcome to your risk assessment?",
             "actions": "showindex()",
             "responses": [
@@ -815,7 +979,7 @@
                         {
                             "name": "Belgian Multidisciplinary evidence based prioritisation tool",
                             "link": "https://www.researchgate.net/publication/223982140_Multidisciplinary_and_Evidence-based_Method_for_Prioritizing_Diseases_of_Food-producing_Animals_and_Zoonoses",
-                            "info": "Little information exists on this tool, however, it is known to consider public health impacts of a range of diseases. It may be a good source of inspiration for building a similar tool."
+                            "info": "'Little information exists on this tool, however, it is known to consider public health impacts of a range of diseases. It may be a good source of inspiration for building a similar tool.'"
                         },
                         {
                             "name":"HAIRS RA Framework",
@@ -829,8 +993,8 @@
                         },
                         {
                             "name": "SPARE",
-                            "link": "https://www.researchgate.net/publication/332997045_A_spatial_risk_assessment_model_framework_for_incursion_of_exotic_animal_disease_into_the_European_Union_Member_States",
-                            "info": "This tool was designed to be a generic tool for disease risk estimation, built in a web-based app. This tool will be able to rank the aforementioned diseases based on a range of criteria. The 'weight' that you attribute to criteria, depending on their perceived importance, will affect the ranking of these diseases."
+                            "link": "https://spare-europe.shinyapps.io/Prioritising_livestock_diseases/",
+                            "info": "This tool was designed to be a generic tool for disease risk estimation, built in a web-based app. This tool will be able to rank diseases based on a range of criteria. The 'weight' that you attribute to criteria, depending on their perceived importance, will affect the ranking of these diseases."
                         },
                         {
                             "name": "Multicriteria based food borne parasite tanking system",
@@ -840,17 +1004,17 @@
                         {
                             "name": "D2R2",
                             "link": "https://www.ncbi.nlm.nih.gov/pubmed/27707948",
-                            "info": "Though the information basis for this prioritisation tool is thought to be out-dated, most of its data sources are up to date, and cover a huge spectrum of criteria. This tool is a good framework to draw inspiration off if you are looking to build a tool for prioritising endemic and exotic infectious diseases."
+                            "info": "Most data sources for D2R2 are up to date, and cover a huge spectrum of criteria. Though access to the tool is limited, it is a good framework to draw inspiration off if you are looking to build a tool for prioritising endemic and exotic infectious diseases."
                         },
                         {
                             "name": "Prioritisation of companion animal diseases tool",
                             "link": "http://www.callistoproject.eu/callisto/",
-                            "info": "This is the only known risk assessment tool working with companion animals. It is hence a good starting point for anyone looking to create risk tool involving companion animals"
+                            "info": "This is the only known risk assessment tool working with companion animals and a good starting point for anyone looking to create risk tool involving these"
                         },
                         {
                             "name": "ECDC tool for the prioritisation of infectious diseases",
                             "link": "https://ecdc.europa.eu/en/publications-data/ecdc-tool-prioritisation-infectious-disease-threats",
-                            "info": "This tool is useful when information in limited but you still need a rapid output. It will prioritise diseases based on criteria that you define youself and attribute weights to them. In a seperate sheet it calculates the risk or impact of these criteria for a particular disease (also difined by the user) and ranks the diseases in terms of severity. It is recommended to use this to supplement a full qualitative risk assessment."
+                            "info": "This tool is useful when information in limited but you still need a rapid output. It will prioritise diseases based on criteria that you define youself and attribute weights to. In a seperate sheet it calculates the risk or impact of these criteria for a particular disease (also difined by the user) and ranks the diseases in terms of severity. It is recommended to use this to supplement a full qualitative risk assessment."
                         },
                         {
                             "name": "Simplified generic prioritisation tool (France)",
@@ -860,17 +1024,17 @@
                         {
                             "name": "Emerging Threat Highlight Report",
                             "link": "https://data.gov.uk/dataset/d2bd7435-6ebb-41f0-a34c-fe264bb4ed21/emerging-threats-highlight-report-ethir",
-                            "info":"This tool was designed to identify, assess and report on the threats and vulnerabilities entering the UK. It encompasses three main areas of impact assessment: actual impact, potential impact, and public perception. Crucially ETHiR is not limited to disease threats; threats such as the Icelandic dust cloud are known to have been assessed using this tool."
+                            "info":"This tool was designed to identify, assess and report on the threats and vulnerabilities entering the UK. It encompasses three main areas of impact assessment: actual impact, potential impact, and public perception. Crucially ETHiR is not limited to disease threats; threats such as the Icelandic dust cloud are known to have been assessed using this tool. Access to the tool is by request only."
                         },
                         {
                             "name": "Monte Carlo Simulation",
                             "link": "https://www.ncbi.nlm.nih.gov/pubmed/23569196",
-                            "info":"This is the among the simplest and most common methods of predictive quantitative risk assessments. At its core, this form of simulation relies on random sampling from a distribution of epidemiological data to work out basic probabilities and risks of something occurring. These may then be used to produce further distributions or integrate with other probabilities in to a cumulative probability that a particular outcome occurs."
+                            "info":"This is among the simplest and most common methods of predictive quantitative risk assessments. At its core, this form of simulation relies on random sampling from a distribution of epidemiological data to work out basic probabilities and risks of something occurring. These may then be used to produce further distributions or integrate with other probabilities in to a cumulative probability. It is a mathematics-based method of risk assessment."
                         },
                         {
                             "name": "OIE quantitative risk assessment guidance",
                             "link": "https://www.oie.int/doc/ged/D11250.PDF",
-                            "info": "This will provide the very basics of quantitative risk assessment. Applications such as Matlab, @Risk, R and Python are widely used in these risk assessments and building models based on this framework may be challenging, however such risk assessments are good ways of attributing a numerical risk to a range of criteria and to specific situations."
+                            "info": "This will provide guidance for basics quantitative risk assessments. Applications such as Matlab, @Risk, R and Python are widely used in these risk assessments and building models based on this framework may be challenging, however such risk assessments are good ways of attributing a numerical risk to a range of criteria and to specific situations."
                         },
                         {
                             "name": "OIE qualitative risk assessment framework",
