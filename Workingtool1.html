@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<div class = "div" id = "backdoor"> <h1 id = "approach"> </h1><p id = "infopara"></p></div>
 <div class="row" style="width: 1012px; height: 130px; background-color: white;">
     <div class="column">
         <a href="https://ec.europa.eu/programmes/horizon2020/en/h2020-section/joint-programming-initiatives"
@@ -24,17 +25,16 @@
     <span class="popuptext" id="myPopup">
         <h1 class="hed">The EJP Secision Support Tool for One-Health Risk Assessment</h1>
         <h2>Purpose, scope and caveats</h2>
-        <p>This tool is designed to help those who are new to the fields of risk assessment or One-Health find useful
-            existing resources in a range of sub-disciplines.</p>
+        <p>This tool is designed to help those who are new to the fields of risk assessment or One-Health find an appropriate risk assessent approach.</p>
         <p>This tool will:</p>
         <ul>
-            <li>Showcase fourteen tools and guidance documents, providing links and summaries to each of these</li>
+            <li>Showcase sixteen risk assessment approaches, providing a short description of each</li>
             <li>Broadly assess your needs and limiations using a series of questions</li>
             <li>Make suggestions on those needs and limitations</li>
             <li>Be easily reset and adjusted for changing answers, allowing the user to explore many different paths
             </li>
             <li>Aim to provide access to as many resources as possible</li>
-            <li>In the absence of the actual resource, provide links to publications outlining how they work and where
+            <li>Provide links to published examples of each approach, outlining how they work and where
                 they have succeeded historically</li>
             <li>Be a good starting point to those less familiar with the field</li>
         </ul>
@@ -42,7 +42,7 @@
         <ul>
             <li>Provide the definitive answer to any of the questions that are asked</li>
             <li>Conduct risk assessment in of itself</li>
-            <li>Provide the definitive list of risk assessment tools and guidance documents</li>
+            <li>Provide the definitive list of examples for each approach</li>
             <li>Record any of the responses given by the user</li>
             <li>Show any risk assessment resources that are not related to the field of One-Health</li>
         </ul>
@@ -68,7 +68,8 @@
 
     <div id="main"></div>
 </div>
-<table class="table" id="index"></table>
+<div class="div" id="index"></div>
+<div 
 <p class="table" id="table1">
     Emerging threats are usually non-endemic diseases. This might be a known disease that is reappearing, or a
     previously untracked disease. Assessing the risk of disease spread is generic, and could apply to almost any risk.
@@ -475,13 +476,14 @@
         background-color: orange;
         color: black;
         text-align: center;
+        z-index: 4;
     }
 
     /* Popup container */
     .popup {
         position: absolute;
         left: 550px;
-        top: 550px;
+        top: 150px;
         display: inline-block;
         cursor: pointer;
         background-color: tomato;
@@ -532,13 +534,21 @@
         border-radius: 6px;
         padding: 8px 0;
         position: absolute;
-        z-index: 1;
-        bottom: 125%;
+        z-index: 2;
+        bottom: -400px;
         left: 10%;
         margin-left: -500px;
         overflow: scroll;
     }
+    #index {
+        position: absolute;
+        left: 500;
+        top: 200px;
+        margin-bottom: 270px;
+        margin-left: 530px;
+        z-index: 0;
 
+    }
     #approach {
         font-size: 16px;
     }
@@ -588,7 +598,7 @@
 
 
     .table {
-        width: 500px;
+        width: 800px;
         height: 400px;
         overflow: scroll;
         display: none;
@@ -720,6 +730,7 @@
 
 
 <script type="text/javascript">
+
     let main = document.getElementById("main");
     let rootData = getData();
     let toolData = getTools();
@@ -729,12 +740,44 @@
 
 
     let index = document.getElementById("index");
+    var tools = toolData.tools
     toolData.tools.forEach(function (object) {
-        let tr = document.createElement("tr");
-        tr.innerHTML = '<td href =' + object.link + '>' + object.approach + '</td>' +
-            '<td>' + object.info + '</td>';
-        tr.setAttribute("border", "solid")
-        index.appendChild(tr);
+        var btnxx = document.createElement("button")
+        btnxx.innerHTML = object.approach
+        btnxx.onclick = () => {
+            if (indidiv.style.display === "none"){
+                return indidiv.style.display = "block";
+            } else {
+                return indidiv.style.display = "none"
+            }
+        }
+        index.appendChild(btnxx)
+        let indidiv = document.createElement("div")
+        indidiv.id = "indidiv"
+        index.appendChild(indidiv)
+        let btnx = document.createElement("h1");
+        btnx.innerHTML = object.approach
+        indidiv.appendChild(btnx)
+        let infopar = document.createElement("p")
+        infopar.innerHTML = object.info
+        indidiv.appendChild(infopar)
+        var reheading = document.createElement("a")
+        reheading.class = "thing"
+        reheading.innerText = "Examples:"
+        indidiv.appendChild(reheading)
+        var kelement = "";
+        var o_n = object.name;
+        var l_d = object.link;
+        for (var i = 0; i < o_n.length; i++) {
+            kelement = document.createElement("a")
+            kelement.className = "link"
+            kelement.innerHTML = o_n[i]
+            kelement.href = l_d[i]
+            kelement.target = "_.blank"
+            indidiv.appendChild(kelement);
+                }
+        indidiv.style.display = "none"
+
     });
 
 
@@ -754,7 +797,13 @@
                 var toolElement = getToolByName(toolData.tools, outcome) // look up by name in the tools data set
                 var nameElement = toolElement.name
                 var linkdata = toolElement.link
-
+                //for (var i = 0; i < outcome.length; i++) {
+                //Buttonelement[i] = document.createElement("button")
+                //Buttonelement[i].type = "button"
+                //Buttonelement[i].innerHTML = outcome[i].approach
+                //Buttonelement[i].onclick = () => {
+                // toolElement = outcome[i]
+                //};
 
 
                 //var linkElement = document.createElement("a") // attach href-link element 
@@ -850,7 +899,18 @@
         hideAllLists();
         showindex();
     }
-
+    function createstuff() {
+        created = getToolByName(toolData, btnx.innerText)
+        heading = getElementById("approach")
+        heading.innerHTML = created.approach
+        infopara = getElementById("infopara")
+        infopara.innerHTML = created.info
+    }
+        //backdoor = getElementById("backdoor")
+        //backdoor.appendChild(heading)
+        //backdoor.appendChild(infopara)
+    //}
+    
     function hideAllLists() {
         document.getElementById("index").style.display = "none";
         document.getElementById("table1").style.display = "none";
@@ -874,6 +934,13 @@
     function showindex() {
         document.getElementById("index").style.display = "block";
     }
+    btnpanel = document.createElement("div")
+    for (var i = 0; i < toolElement.length; i++) {
+        btnstart = document.createElement("button")
+        btnstart.innerHTML = toolElement.approach[i]
+        btnpanel.appendChild(btnstart)
+    }
+
 
 
     function caveats_func() {
@@ -888,22 +955,41 @@
             "responses": [
                 {
                     "answer": "Long (>4 weeks)",
-                    "question": "[OUTPUT TYPE] What outcome do you require for your risk assessment?",
+                    "question": "[HAZARD-ID] What activity best describes your needs?",
                     "responses": [
                         {
-                            "answer": "Disease prioritisation",
+                            "answer": "Scanning surveillance  over a range of diseases",
                             "question": "[GEO-SPECIFICITY] At what geographic level is your risk question?",
                             "responses": [
                                 {
                                     "answer": "Multi-Country",
+                                    "question": "[DATA] What level of data is available?",
                                     "outcomes": [
-                                        "Continent-wide or global disease prioritsation"
+                                        "Multi-country disease prioritisation"
                                     ]
                                 },
                                 {
                                     "answer": "Single Country",
-                                    "outcomes": [
-                                        "National-level disease prioritisation"
+                                    "question": "What level of data is available?",
+                                    "responses": [
+                                        {
+                                            "answer": "Low/limited",
+                                            "outcomes": [
+                                                "Qualitative disease prioritisation"
+                                            ]
+                                        },
+                                        {
+                                            "answer": "Medium",
+                                            "outcomes": [
+                                                "Semi-quantitative disease prioritisation"
+                                            ]
+                                        },
+                                        {
+                                            "answer": "High",
+                                            "outcomes": [
+                                                "Quantitative disease prioritisation"
+                                            ]
+                                        }
                                     ]
                                 },
                                 {
@@ -911,40 +997,27 @@
                                     "outcomes": [
                                         "Regional disease prioritisation"
                                     ]
-                                },
-                                {
-                                    "answer": "Single premisis/process",
-                                    "outcomes": [
-                                        "Prioritisation for individual premises or processes (holding/hospital/trust/land-area etc.)"
-                                    ]
                                 }
                             ]
                         },
                         {
-                            "answer": "Full risk assessment",
+                            "answer": "Full risk assessment of specific disease risk",
                             "question": "[DATA] What level of data do you have available?",
                             "responses": [
                                 {
-                                    "answer": "Low, limited circumstantial and expert opinion",
-                                    "question": "[EVENT] What best describes your risk question?",
-                                    "actions": "show1()",
+                                    "answer": "Low, limited",
+                                    "question": "[EXPERTISE] What level of experience do you have with mathematical approaches to risk assessment?",
                                     "responses": [
                                         {
-                                            "answer": "Assessment of emerging disease threat",
-                                            "outcomes": [
-                                                "Assessing emerging threats"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "Assessment of disease spread",
+                                            "answer": "Very low/beginner",
                                             "outcomes": [
                                                 "Qualitative risk assessment"
                                             ]
                                         },
                                         {
-                                            "answer": "Assessment to inform a policy or practice",
+                                            "answer": "Medium/high",
                                             "outcomes": [
-                                                "Risk assessment for policy"
+                                                "Deterministic risk assessment"
                                             ]
                                         }
                                     ]
@@ -954,207 +1027,65 @@
                                     "question": "[EXPERTISE] What level of experience with mathematical approaches to risk assessment?",
                                     "responses": [
                                         {
-                                            "answer": "Zero",
-                                            "question": "[EVENT] What best describes your risk question?",
-                                            "actions": "show1()",
-                                            "responses": [
-                                                {
-                                                    "answer": "Assessment of emerging disease threat",
-                                                    "outcomes": [
-                                                        "Assessing emerging threats"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Assessment of disease spread",
-                                                    "outcomes": [
-                                                        "Qualitative risk assessment"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Assessment to inform a policy or practice",
-                                                    "outcomes": [
-                                                        "Risk assessment for policy"
-                                                    ]
-                                                },
-                                            ]
-                                        },
-                                        {
-                                            "answer": "Low/Medium",
+                                            "answer": "Very low/beginner",
                                             "outcomes": [
                                                 "Deterministic risk assessment"
                                             ]
                                         },
                                         {
-                                            "answer": "High",
-                                            "outcomes": [
-                                                "Stochastic risk assessment in atRisk/Excel"
-                                            ],
-                                        }
-                                    ]
-                                },
-                                {
-                                    "answer": "High, including detailed disease data",
-                                    "question": "[EXPERTISE] Do you have experience with mathematical approaches to risk assessment?",
-                                    "responses": [
-                                        {
-                                            "answer": "Zero",
-                                            "question": "[EVENT] What best describes your risk question?",
-                                            "actions": "show1()",
+                                            "answer": "Medium/high",
+                                            "question": "[EVENT] What best describes the threat you are assessing?",
                                             "responses": [
                                                 {
-                                                    "answer": "Assessment of emerging disease threat",
+                                                    "answer": "Emerging disease threat",
                                                     "outcomes": [
-                                                        "Assessing emerging threats"
+                                                        "Import risk assessment: stochastic"
                                                     ]
                                                 },
                                                 {
-                                                    "answer": "Assessment of disease spread",
-                                                    "outcomes": [
-                                                        "Qualitative risk assessment"
+                                                    "answer": "Spread of endemic disease threat",
+                                                    "question": "[EVENT] What level of resolution do you require for your risk assessment?",
+                                                    "responses": [
+                                                        {
+                                                            "answer": "Detailed",
+                                                            "question": "[EVENT] Do you require economic analysis in your assessment?",
+                                                            "responses": [
+                                                                {
+                                                                    "answer": "yes",
+                                                                    "outcomes": [
+                                                                        "Cost-benefit analysis"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "answer": "no",
+                                                                    "question": "[EVENT] Is the threat you are assessing foodborne?",
+                                                                    "responses": [
+                                                                        {
+                                                                            "answer": "no",
+                                                                            "outcomes": [
+                                                                                "Bespoke modelling techniques"
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "answer": "yes",
+                                                                            "outcomes": [
+                                                                                "Farm-to-consumption QMRA"
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "answer": "Broad",
+                                                            "outcomes": [
+                                                                "Stochastic risk assessment"
+                                                            ]
+                                                        }
                                                     ]
-                                                },
-                                                {
-                                                    "answer": "Assessment to inform a policy or practice",
-                                                    "outcomes": [
-                                                        "Risk assessment for policy"
-                                                    ]
-                                                },
-                                            ]
-                                        },
-                                        {
-                                            "answer": "Low-Medium",
-                                            "outcomes": [
-                                                "Deterministic risk assessment"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "High",
-                                            "question": "[EVENT] How detailed is the scope of the risk assessment?",
-                                            "responses": [
-                                                {
-                                                    "answer": "Detailed, tracking the risk at multiple stages of a complex system over time",
-                                                    "outcomes": [
-                                                        "Bespoke modelling techniques"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Broad, to accurately define the overall risk through a system such as a country, region, or process",
-                                                    "outcomes": [
-                                                        "Stochastic risk assessment in atRisk/Excel"
-                                                    ]
+
                                                 }
                                             ]
-                                        }
-                                    ]
-                                },
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "answer": "Medium (<2 weeks)",
-                    "question": "[OUTPUT TYPE] What outcome do you require for your risk assessment?",
-                    "responses": [
-                        {
-                            "answer": "Disease prioritisation",
-                            "question": "[EVENT] The timeframe suits an off-the-shelf prioritisation tool, which of the following best describes your risk question?",
-                            "responses": [
-                                {
-                                    "answer": "Prioritisation of vector-borne diseases, focussed on incursion risk",
-                                    "outcomes": [
-                                        "MINTRISK"
-                                    ]
-                                },
-                                {
-                                    "answer": "Prioritisation of a range of diseases based on parameterised by the user",
-                                    "question": "[EVENT] Are you interested in prioritising the diseases in the following list?",
-                                    "actions": "show2()",
-                                    "responses": [
-                                        {
-                                            "answer": "yes",
-                                            "outcomes": [
-                                                "SPARE"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "no",
-                                            "outcomes": [
-                                                "ECDC tool or ANSES tool for disease prioritisation"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "answer": "Full risk assessment",
-                            "question": "[DATA] What level of data do you have available?",
-                            "responses": [
-                                {
-                                    "answer": "Low, limited circumstantial and expert opinion",
-                                    "question": "[EVENT] What best describes your risk question?",
-                                    "actions": "show1()",
-                                    "responses": [
-                                        {
-                                            "answer": "Assessment of emerging disease threat",
-                                            "outcomes": [
-                                                "Assessing emerging threats"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "Assessment of disease spread",
-                                            "outcomes": [
-                                                "Qualitative risk assessment"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "Assessment to inform a policy or practice",
-                                            "outcomes": [
-                                                "Risk assessment for policy"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "answer": "Medium, including some trade and disease-specific data",
-                                    "question": "[EXPERTISE] What level of experience with mathematical approaches to risk assessment?",
-                                    "responses": [
-                                        {
-                                            "answer": "Zero",
-                                            "question": "[EVENT] What best describes your risk question?",
-                                            "actions": "show1()",
-                                            "responses": [
-                                                {
-                                                    "answer": "Assessment of emerging disease threat",
-                                                    "outcomes": [
-                                                        "Assessing emerging threats"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Assessment of disease spread",
-                                                    "outcomes": [
-                                                        "Qualitative risk assessment"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Assessment to inform a policy or practice",
-                                                    "outcomes": [
-                                                        "Risk assessment for policy"
-                                                    ]
-                                                },
-                                            ]
-                                        },
-                                        {
-                                            "answer": "Low/Medium",
-                                            "outcomes": [
-                                                "Deterministic risk assessment"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "High",
-                                            "outcomes": [
-                                                "Stochastic risk assessment in atRisk/Excel"
-                                            ],
                                         }
                                     ]
                                 },
@@ -1163,104 +1094,211 @@
                                     "question": "[EXPERTISE] What level of experience do you have with mathematical approaches to risk assessment?",
                                     "responses": [
                                         {
-                                            "answer": "Zero",
-                                            "question": "[EVENT] What best describes your risk question?",
-                                            "actions": "show1()",
-                                            "responses": [
-                                                {
-                                                    "answer": "Assessment of emerging disease threat",
-                                                    "outcomes": [
-                                                        "Assessing emerging threats"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Assessment of disease spread",
-                                                    "outcomes": [
-                                                        "Qualitative risk assessment"
-                                                    ]
-                                                },
-                                                {
-                                                    "answer": "Assessment to inform a policy or practice",
-                                                    "outcomes": [
-                                                        "Risk assessment for policy"
-                                                    ]
-                                                },
+                                            "answer": "Very low/beginner",
+                                            "outcomes": [
+                                                "Deterministic risk assessment"
                                             ]
                                         },
                                         {
-                                            "answer": "Low-Medium",
+                                            "answer": "Medium/high",
+                                            "question": "[EVENT] What best describes the threat you are assessing?",
+                                            "responses": [
+                                                {
+                                                    "answer": "Emerging disease threat",
+                                                    "outcomes": [
+                                                        "Import risk assessment: stochastic", "Stochastic risk assessment"
+                                                    ]
+                                                },
+                                                {
+                                                    "answer": "Spread of endemic disease threat",
+                                                    "question": "[EVENT] What level of resolution do you require for your risk assessment?",
+                                                    "responses": [
+                                                        {
+                                                            "answer": "Detailed",
+                                                            "question": "[EVENT] Do you require economic analysis in your assessment?",
+                                                            "responses": [
+                                                                {
+                                                                    "answer": "yes",
+                                                                    "outcomes": [
+                                                                        "Cost-benefit analysis"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "answer": "no",
+                                                                    "question": "[EVENT] Is the threat you are assessing foodborne?",
+                                                                    "responses": [
+                                                                        {
+                                                                            "answer": "no",
+                                                                            "outcomes": [
+                                                                                "Bespoke modelling techniques"
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "answer": "yes",
+                                                                            "outcomes": [
+                                                                                "Farm-to-consumption QMRA"
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "answer": "Broad",
+                                                            "outcomes": [
+                                                                "Stochastic risk assessment"
+                                                            ]
+                                                        }
+                                                    ]
+
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "answer": "Medium (<2 weeks)",
+                    "question": "[HAZARD-ID] What activity best describes your needs?",
+                    "responses": [
+                        {
+                            "answer": "Scanning surveillance  over a range of diseases",
+                            "question": "[DATA] What level of data do you have available?",
+                            "responses": [
+                                {
+                                    "answer": "Low",
+                                    "outcomes": [
+                                        "Qualitative disease prioritisation"
+                                    ]
+                                },
+                                {
+                                    "answer": "Medium",
+                                    "outcomes": [
+                                        "Semi-quantitative disease prioritisation"
+                                    ]
+                                },
+                                {
+                                    "answer": "High",
+                                    "outcomes": [
+                                        "Quantitative disease prioritisation"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "answer": "Full risk assessment of specific disease risk",
+                            "question": "[DATA] What level of data do you have available?",
+                            "responses": [
+                                {
+                                    "answer": "Low, limited",
+                                    "question": "[EVENT] What best describes the threat you are assessing?",
+                                    "responses": [
+                                        {
+                                            "answer": "Emeging threat",
+                                            "outcomes": [
+                                                "Preliminary outbreak assessment"
+                                            ]
+                                        },
+                                        {
+                                            "answer": "Spread of endemic disease",
+                                            "outcomes": [
+                                                "Rapid risk assessment"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "answer": "Medium",
+                                    "question": "[EXPERTISE] What level of experience do you have with mathematical approaches to risk assessment?",
+                                    "responses": [
+                                        {
+                                            "answer": "Very low/beginner",
+                                            "outcomes": [
+                                                "Qualitative risk assessment"
+                                            ]
+                                        },
+                                        {
+                                            "answer": "Low/medium",
+                                            "outcomes": [
+                                                "Deterministic risk assessment"
+                                            ]
+                                        },
+                                        {
+                                            "answer": "High, including detailed disease data",
+                                            "outcomes": [
+                                                "Stochastic risk assessment"
+                                            ]
+                                        }]
+                                },
+                                {
+                                    "answer": "High",
+                                    "question": "[EXPERTISE] What level of experience do you have with mathematical approaches to risk assessment?",
+                                    "responses": [
+                                        {
+                                            "answer": "Zero",
+                                            "outcomes": [
+                                                "Qualitative risk assessment"
+                                            ]
+                                        },
+                                        {
+                                            "answer": "Low/medium",
                                             "outcomes": [
                                                 "Deterministic risk assessment"
                                             ]
                                         },
                                         {
                                             "answer": "High",
-                                            "outcomes": [
-                                                "Stochastic risk assessment in atRisk/Excel"
-                                            ],
+                                            "question": "What best describes your needs in the risk assessment?",
+                                            "responses": [
+                                                {
+                                                    "answer": "Detailed tracking",
+                                                    "outcomes": [
+                                                        "Bespoke modelling techniques"
+                                                    ]
+                                                },
+                                                {
+                                                    "answer": "Broad",
+                                                    "outcomes": [
+                                                        "Stochastic risk assessment"
+                                                    ]
+                                                }
+                                            ]
                                         }
                                     ]
-                                },
+                                }
                             ]
                         }
                     ]
                 },
                 {
                     "answer": "Short (<1 week)",
-                    "question": "[OUTPUT TYPE] What outcome do you require for your risk assessment?",
+                    "question": "[HAZARD-ID] What activity best describes your needs?",
                     "responses": [
                         {
-                            "answer": "Disease prioritisation",
+                            "answer": "Scanning surveillance",
                             "question": "[EVENT] The timeframe suits an off-the-shelf prioritisation tool, which of the following best describes your risk question?",
-                            "responses": [
-                                {
-                                    "answer": "Prioritisation of vector-borne diseases, focussed on incursion risk",
-                                    "outcomes": [
-                                        "MINTRISK"
-                                    ]
-                                },
-                                {
-                                    "answer": "Prioritisation of a range of diseases parameterised by the user",
-                                    "question": "[EVENT] Are you interested in prioritising the diseases in the following list?",
-                                    "actions": "show2()",
-                                    "responses": [
-                                        {
-                                            "answer": "yes",
-                                            "outcomes": [
-                                                "SPARE"
-                                            ]
-                                        },
-                                        {
-                                            "answer": "No",
-                                            "outcomes": [
-                                                "ECDC tool or ANSES tool for disease prioritisation"
-                                            ]
-                                        }
-                                    ]
-                                }
+                            "outcomes": [
+                                "Horizon scanning"
                             ]
                         },
+
                         {
-                            "answer": "Full risk assessment",
-                            "question": "[EVENT] What best describes your risk question?",
-                            "actions": "show1()",
+                            "answer": "Full risk assessment of specific disease risk",
+                            "question": "[EVENT] What best describes the threat you are assessing?",
                             "responses": [
                                 {
                                     "answer": "Emerging disease threat",
                                     "outcomes": [
-                                        "Assessing emerging threats"
+                                        "Preliminary outbreak assessment"
                                     ]
                                 },
                                 {
-                                    "answer": "Assessment of disease spread",
+                                    "answer": "Spread of endemic disease",
                                     "outcomes": [
-                                        "Qualitative risk assessment"
-                                    ]
-                                },
-                                {
-                                    "answer": "Assessment to inform a policy or practice",
-                                    "outcomes": [
-                                        "Risk assessment for policy"
+                                        "Rapid risk assessment"
                                     ]
                                 }
                             ]
@@ -1289,115 +1327,98 @@
         return {
             "tools":
                 [
-                    {
-                        "approach": "Continent-wide or global disease prioritsation",
-                        "name": ["WHO prioritisation for R&D"],
-                        "link": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6106429/"],
-                        "info": "These are high-level disease prioritisation activities. They could be employed by International control centres, like the ECDC or WHO. An example of this form of prioritisation could be in aid administration. A country could use these high-level prioritisation practices to determine where to administer aid and against what diseases. They can also be used to monitor spread of large epidemics. The WHO example below provides one such framework to prioritise diseases based on where they need research and development activities. Building a tool like this is usually done in Excel, with a scoring system that compounds risks for each disease in to a final score, used to rank them."
-                    },
-                    {
-                        "approach": "National-level disease prioritisation",
-                        "name": ["IDM risk of incursion tool", "Review of prioritisation tools", "Stakeholder-informed zoonotic prioritisation in Canada", "Zoonotic disease prioritisation in Kenya"],
-                        "link": ["https://www.researchgate.net/publication/51084035_Assessing_the_risk_of_disease_introduction_in_imports/link/5b2fe590a6fdcc8506cb827a/download", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7039936/", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029752", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0161576"],
-                        "info": "Disease prioritisation at the national level assesses the threat of different diseases on a country and ranks them in order of severity. Depending on the situation, these could be rankings based on their effect against public and veterinary health, but also on trade and social metrics. They could also measure the risk of incursion, as mentioned in the first example below. The second example reviews a number of such tools to describe what is needed to build one. Usually they are built in Excel, but languages like R can be used too. Building prioritisation tools like this relies on good prevalence, trade and transmission data for the diseases you are prioritising. In the absence of this, survey of expert opinion is usually a sound alternative, though this will increase uncertainty."
-                    },
-                    {
-                        "approach": "Regional disease prioritisation",
-                        "name": ["Localised One-Health disease prioritisation in India", "Stakeholder opinion in prioritisation in Quebec"],
-                        "link": ["https://www.wecr.wur.nl/mintrisk/", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
-                        "info": "Large countries, especially with decentralised public/veterinary health authorities, may choose to conduct prioritisation at the regional level. There may also be, as in the first example below, elements of local geography that would affect disease spread. Local-level data is often harder to come by, so paramaterisation may favour a survey of expert opinion. The second example, while not a prioritisation in of itself, shows how different stakeholder opinions can affect the ranking of diseases. This is worth considering when conducting prioritisation at the local level."
-                    },
-                    {
-                        "approach": "Prioritisation for individual premises or processes (holding/hospital/trust/land-area etc.)",
-                        "name": ["Prioritisation framework English primary care trust", "Cost-benefit assessment in UK pig industry"],
-                        "link": ["https://link.springer.com/article/10.1186/1478-7547-4-3", "https://www.sciencedirect.com/science/article/pii/S0167587717308462"],
-                        "info": "At this level, prioritisation ties in much more closely with mitigation strategies. How the disease will affect a given area, will help to better understand how to manage day-to-day activities in that area. This links to cost, and may serve as a cost-benefit analysis, as in the first example. There are few examples of this prioritisation in action. You can create prioritisation at a single-premises level by applying the same principles as global, national, and regional frameworks, but with data that applies to that farm. This may require independent investigation of biosecure practice on the premisis. The effectiveness of various strategies through a process may also be found through cost-benefit assessment. One such example is listed."
-                    },
-                    {
-                        "approach": "Assessing emerging threats",
-                        "name": ["Horizon scanning in fishery products", "Global-level horizon scanning", "HAIRS Qualitative RA framework", "HAIRS in action", "OIE qualitative risk assessment framework"],
-                        "link": ["https://www.sciencedirect.com/science/article/pii/S0956713513004519", "https://www.sciencedirect.com/science/article/pii/S0169534717302896", "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/761106/HAIRS_risk_assessment_processes.pdf", "https://pubmed.ncbi.nlm.nih.gov/19538820/", "http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf"],
-                        "info": "Low data is a sign that the threat you are assessing may be emergent. In these cases, horizon scanning can be good approach to attributing a preliminary risk to this threat. Much of horizon scanning is actually compiling data. Searching for published material about the threat, interviewing experts and engaging industry practitioners. The fisheries example below explores this process in more detail. In your timesacele, you may want to follow horizon scanning with a qualitative risk assessment. The HAIRS framework is perfectly adapted for emerging threats, using an algorithmic approach to determine the risk level of a pathogen. The OIE qualitative risk assessment framework may also be useful",
-                    },
-                    {
-                        "approach": "Risk assessment for policy",
-                        "name": ["Scottish government licensing risk assessments", "Consultation on badger culling", "OIE qualitative risk assessment framework"],
-                        "link": ["https://www.gov.scot/publications/foot-and-mouth-disease-veterinary-risk-assessments-vras/", "https://consult.defra.gov.uk/bovine-tb/badger-control-in-low-risk-area-england/supporting_documents/bovinetbconsultlicensecontrollraengland.pdf", "http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf"],
-                        "info": "To completely mitigate spread of a disease, most legislation favours zero contact between infectious substances and susceptible species. But certain processes must continue to maintain food security and point-of-care treatment. Decision-makers therefore require exemptions from some legal requirements to be granted for essential services to be maintained. Risk assessments estimate the risk of these exemptions, and allow mitigations to be made to reduce those risks. Veterinary risk assessments, like those deployed in an outbreak of foot-and-mouth disease, are prime examples of this. Another might be a change in long-term control strategy of an indemic disease, such as badger culling to prevent TB. The second example provides an idea of how a consultation on a policy change might be carried out, though this will have been accompanied by a full risk assessment. The OIE qualitative risk assessment framework is a good to base any such risk assessment."
-                    },
-                    {
+                {
                         "approach": "Qualitative risk assessment",
-                        "name": ["OIE qualitative risk assessment framework", "RVF risk assessment EU", "RVF risk assessment UK", "Foot-and-mouth Spain"],
-                        "link": ["http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf", "https://efsa.onlinelibrary.wiley.com/doi/full/10.2903/j.efsa.2020.6093#:~:text=Rift%20Valley%20fever%20(RVF%20)%20is,genus%2C%20to%20animals%20and%20humans.&text=The%20only%20identified%20pathways%20for,airplanes%20or%20by%20wind%20currents.", "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/902415/poa-rvf-mayotte.pdf", "https://www.sciencedirect.com/science/article/pii/S0167587708000627"],
-                        "info": "These risk assessments could apply to any scenario. Most methods stem in some way from the OIE qualitative risk assessment handbook, with the a risk > exposure > consequence format. Steps involve: establishing a risk question, drawing a risk pathway, and estimating the risks of each segment of the pathway. From this, an overall risk can be determined. This can be at multiple levels. An EFSA risk assessment and a UK risk assessment of the same threat are listed below for comparison. Both are concerned with risk of incursion."
+                        "name": ["OIE qualitative risk assessment framework",    "Codex Alimentarius microbial risk assessment", "RVF risk assessment EU", "RVF risk assessment UK", "Foot-and-mouth Spain"],
+                        "link": ["http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf", "http://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXG%2B30-1999%252FCXG_030e_2014.pdf", "https://efsa.onlinelibrary.wiley.com/doi/full/10.2903/j.efsa.2020.6093#:~:text=Rift%20Valley%20fever%20(RVF%20)%20is,genus%2C%20to%20animals%20and%20humans.&text=The%20only%20identified%20pathways%20for,airplanes%20or%20by%20wind%20currents.", "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/902415/poa-rvf-mayotte.pdf", "https://www.sciencedirect.com/science/article/pii/S0167587708000627"],
+                        "info": "Qualitative risk assessments can be applied in any scenario from multiple geographic perspectives, but are generally best suited when more complex methods are problematic, such as when time is short or data are lacking. Most animal health and zoonosis risk assessments stem from the World Organisation for Animal Health (OIE) Terrestrial/Aquatic Animal Health Code, but other approaches such as Codex Alimentarius are also recognised.  The OIE framework consists of a release (or entry) assessment, exposure assessment, consequence assessment and risk estimation. Hazard Identification is an important first step, but the OIE framework does not consider this part of the risk assessment section of the wider risk analysis methodology which also includes risk management and risk communication.   Steps in the risk assessment process involve: establishing a risk question, drawing a risk pathway, and estimating the risks of each segment of the pathway based on evidence. These are then combined into an overall risk. The process should ideally include an estimate of the level of uncertainty. An EFSA risk assessment and a UK risk assessment on the incursion risk of rift valley fever are listed below for comparison."
                     },
                     {
                         "approach": "Deterministic risk assessment",
                         "name": ["OIE quantitative risk assessment framework", "Risk to animals from catering waste"],
                         "link": ["https://www.oie.int/doc/ged/D11250.PDF", "https://www.researchgate.net/publication/8399223_Risk_to_farm_animals_from_pathogens_in_composted_catering_waste_containing_meat/link/00b7d537328d24b378000000/download"],
-                        "info": "With reasonable data, and some experience of mathematical methods, this may be a good option. For example, you can plot the number of infected in a given population, where a disease is endemic use this to establish a prevalence using simple linear regression (by plotting this on a graph and taking the gradient of the line between that point and the origin). Prevalence can then be used to estimate the probability of transmission. If baseline prevalence is 1 in 10 become, the probability of infection is 1/10. Given exposure rate to a new population, this can provide the risk of transmission between the two. OIE quantitative risk assessment guidance (below) has a section on this. Common formats include Excel and R."
-                    },
+                        "info": "Deterministic risk assessments are quantitative analyses where the overall risk is determined by multiplying estimates for the average probabilities of each step in the pathway together. It is relatively easy to learn given a medium timescale and can provide an easily interpretable risk estimate. One main disadvantage is that, unlike more advanced quantitative methods such as stochastic risk assessment, it cannot fully integrate uncertainty in to the final estimate. Instead, the impact of uncertainty at each step on the final risk score can be  described qualitatively,  or assessed  through  modelling different scenarios using extreme biologically plausible estimates   for your parameters. Deterministic risk assessment is therefore best used when data variability and uncertainty are low, such that the resource needed for more complex methods may not be necessary. The OIE quantitative risk assessment guidance explains this approach in more detail.  Most deterministic risk assessments are not too complex and can be carried out in Excel, although the assessor is generally best advised to use whichever software they are most comfortable with.  For more complex computational models a programming language such as R, Matlab or Python is recommended."                      
+                        },
                     {
-                        "approach": "Stochastic risk assessment in atRisk/Excel",
-                        "name": ["OIE quantitative risk assessment framework", "Cattle foot diseases", "Optimising surveillance systems"],
-                        "link": ["https://www.oie.int/doc/ged/D11250.PDF", "https://www.sciencedirect.com/science/article/pii/S0022030210002456", "https://www.vetres.org/articles/vetres/pdf/2008/06/v08196.pdf"],
-                        "info": "Stochastic refers to the process of randomly sampling from a probability distribution to determine risk. Rates of transmission could be an example, where the infections orrur at a rate of mean 0.4 per 10 exposed, with an uncertainty of 0.2. In this case, you can create a distribution with 0.2 to 0.6 forming  upper and lower quartiles of the peak, and 0.4 the maximum. Sampling from this is more likely to yield a transmission rate between 0.2 and 0.6 since these have a higher probability. Using this value, rather than a fixed value, integrates uncertainty in to the calculation and makes it truer to life. Several examples are listed for guidance and inspiration. Monte Carlo simulation is one key method of stochastic risk assessment. @Rsik is ideal for those with reasonable experience, as it integrates with spreadsheets in Excel. Some examples of @Risk in use are below.",
+                        "approach": "Stochastic risk assessment",
+                        "name": ["OIE quantitative risk assessment framework", "E-Coli in salad bars", "Salmonellosis in Europe", "Optimising surveillance systems"],
+                        "link": ["https://www.oie.int/doc/ged/D11250.PDF", "https://watermark.silverchair.com/0362-028x-73_2_274.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAtMwggLPBgkqhkiG9w0BBwagggLAMIICvAIBADCCArUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMQFSHr2hXboeY5U7-AgEQgIIChlQMb8K22IbDRTrE1Rnr2sWHfSmnICbuuTgInm-w5y0Ak9BTDj1oyGgFY17HFwwajKOPOKJaOwrfGhrzjySdHSfgtdAPV4ta1R1_2TZCmEeJtyaghyxlz9gHCY8Qn6cVOSfpPVyYGzUitUmieP40EbiQELTDZdYBJ7qtGbsaP-KA8rb9B9LQwPq4zLNsXzi2yo3QCkYMV4mnt6pi9Ol5WOboAtvmq53rjEVwZRJfTesPHBR6H50ZkY2l2G__hGL7R4Cee0HEzgeRA_Pc-AknR0EE_RGS8tFrsmK8dyoFkDhQf1C_492QL3TVTlzxDFi14HeP9s8_00N1GnY_OWnWew4-tHADTL2AirTA60pL-cugFQPqoZVGsyTLYGr1KMwEb8G3npmMykIR5my7atbBc6OuFMuygmi26LC-Pb2aKxujycrrXwuTE8swDYtNLE-AiBFYVpm4UknVCXMe2zif8bixc0sd3dv-G816hzzA7YHHM799nkR32ZRS8agmdyluRDI7S2w-Up0_-vIjPlohIWRv4xH6HuVsBJtfyRhAXGhJFBE9X26Mz6S8KMYMFz4_7KtXjYSpcsXRGPcwUEs8gsuHTjg2IMU5qOh1KuOSUmv-Y4jyymRUq0x-bZ_WOqVpuPNHsUdlzKuE0HNHyVPWnLcQ2r2EfcxTw1e9IuFkF1enk6MRQJO51WopSaL-P7HCBydQNdmAk70etdo0Ji1tc1XckFy8nCyh01izQVKcNt5_MNzq12z4uUgIy2SsjbGznNMb-lB-wK51SsE6qDvlsF_qWFz9whBZ5wh7enoyDzh1bIYGWt4kRVdfKeQEEMMFRG6nCoU8Q3mGeOFBoWxkTAxEd94G6kM", "https://www.cambridge.org/core/journals/epidemiology-and-infection/article/attributing-foodborne-salmonellosis-in-humans-to-animal-reservoirs-in-the-european-union-using-a-multicountry-stochastic-model/ACE6BB3B195065F1ACCB0B7A5B443925" ,"https://www.vetres.org/articles/vetres/pdf/2008/06/v08196.pdf"],
+                        "info": "A stochastic risk assessment is one in which parameter values are sampled from a probability distribution. Therefore, rather than taking an average of your data, you can simulate data variability in your model. A distribution usually represents how parameters behave in nature more accurately than fixed values. The most common stochastic method is Monte-Carlo simulation, but Bayesian modelling is also widely used. Uncertainty can also be included into parameter values in a similar way, but it is important not to mix uncertainty and variability. A two-stage Monte-Carlo analysis can be used to separate uncertainty and variability to the extent it is possible. See the examples for more detailed explanations of each. Software designed specifically for carrying out stochastic risk assessments exist, @Risk is often recommended for those with limited programming expertise as it integrates directly with Excel spreadsheets. Programming languages such as R, python and Matlab are also regularly used and can provide more flexibility in the approach to the analyst.."
                     },
                     {
                         "approach": "Bespoke modelling techniques",
-                        "name": ["Lumpy skin disease case study", "African Swine Fever spread", "AMR spread in a hospital setting"],
-                        "link": ["https://onlinelibrary.wiley.com/doi/full/10.1111/tbed.12993", "https://www.sciencedirect.com/science/article/pii/S0167587712003650#sec0010", "https://www.sciencedirect.com/science/article/pii/S0924857999001351"],
-                        "info": "Where the data and expertise are available, models can be tailored to virtually any system. Good knowledge of R, Python or Matlab is useful. The first step is understanding the risk question and the system you are modelling. In the Lumpy skin disease example, the goal was to map risk spatially. By looking at the system, you can identify the paramaters you need to set for the model to function. The relationships between these parameters can be defined by looking at data, and a formula can be written to define relationships between parameters. Then, raw data can be used to make risk predictions based on these mathematical relationships. Several examples below will describe how this process can be employed for different systems."
+                        "name": ["One-Health modelling overview", "African Swine Fever spread", "AMR spread in a hospital setting"],
+                        "link": ["https://royalsocietypublishing.org/doi/10.1098/rstb.2016.0164", "https://www.sciencedirect.com/science/article/pii/S0167587712003650#sec0010", "https://www.sciencedirect.com/science/article/pii/S0924857999001351"],
+                        "info": "When the data and expertise are available, models can be tailored to virtually any system. Good knowledge of a software program, such as R, Python or Matlab, is required. There are several types of bespoke modelling for disease risk, outlined in the first example. What parameters you focus on, and how you attribute values to these, depends heavily on the purpose of your analysis. While there are similarities to stochastic risk assessment, bespoke models generally have an  increased depth of mathematical modelling, e.g. estimating risk spatiotemporally, and/or a wider scope than just risk assessment,   to simulate complex systems such as management practices on a farm or movement of animals between farms . Examples below will describe how bespoke modelling might be employed for different systems."
                     },
                     {
-                        "approach": "MINTRISK",
-                        "name": ["MINTRISK", "MINTRISK in action"],
-                        "link": ["https://www.wecr.wur.nl/mintrisk/", "https://www.researchgate.net/profile/H_J_W_Herman-Roermund/publication/301230446_Risk_assessment_of_seven_vector-borne_animal_diseases_for_the_Netherlands_a_structured_approach/links/5d2d736f92851cf4408723d8/Risk-assessment-of-seven-vector-borne-animal-diseases-for-the-Netherlands-a-structured-approach.pdf"],
-                        "info": "Standing for 'Method for INTegrated RISK assessment', this tool specialises in vector borne animal diseases. The disease risks are kept up to date, making it, of the off-the-shelf tools available, among the more reliable. The risk estimation is optimised for disease incursion in to and transfer between European countries, ranking the peramaterised diseases in terms of risk severity."
+                        "approach": "Qualitative disease prioritisation",
+                        "name": ["Prioritisation of wildlife pathogens", "Stakeholder opinion in prioritisation in Quebec"],
+                        "link": ["https://www.sciencedirect.com/science/article/pii/S0167587707000736","https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
+                        "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Qualitative disease prioritisation is usually performed using a rapid risk assessment matrix, due to the large scale, need for fast results or low data availability.  Estimates for each disease may need to be obtained from expert opinion or a search of published literature. Because of the need for ranking, it is difficult to avoid some form of numerical scoring system. Diseases can be ranked purely based on the final qualitative assessment, but this does not allow for fine-grained discrimination between diseases. Instead, scoring can be done using a points-based system for different aspects of each disease, which then provides a basis for ranking and prioritising diseases, as shown in the example, where, a semi-quantitative system is used to rank the diseases based on their scores. The main difference between these and traditionally semi-quantitative approaches is that they are single-dimensional. The scoring of the disease determines its rank, but the different disease-specific criteria are not themselves weighted. This means these analyses can be more focussed on a single risk question than traditional semi-quantitative approaches. Exploring semi-quantitative approaches as well will help you understand which is most suitable to you. The second example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
                     },
                     {
-                        "approach": "SPARE",
-                        "name": ["SPARE", "SPARE explanation"],
-                        "link": ["https://spare-europe.shinyapps.io/Prioritising_livestock_diseases/", "https://www.researchgate.net/publication/332997045_A_spatial_risk_assessment_model_framework_for_incursion_of_exotic_animal_disease_into_the_European_Union_Member_States/link/5cebbe2c92851c4eabc178fe/download"],
-                        "info": "This tool was designed to be a generic tool for disease risk estimation, built in a web-based app. This tool will be able to rank diseases based on a range of criteria. The 'weight' that you attribute to criteria, depending on their perceived importance, will affect the ranking of these diseases."
+                        "approach": "Semi-quantitative disease prioritisation",
+                        "name": ["ECDC tool","ECDC Tool guidance", "Simplified generic prioritisation tool (ANSES)","SPARE","SPARE explanation","D2R2", "MINTRISK ", "MINTRISK in action" ,"Comparing different tools", "Stakeholder opinion in prioritisation in Quebec"],
+                        "link": ["https://ecdc.europa.eu/en/publications-data/ecdc-tool-prioritisation-infectious-disease-threats","https://www.ecdc.europa.eu/sites/portal/files/documents/Tool-for-disease-priority-ranking_handbook_0_0.pdf", "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online","https://spare-europe.shinyapps.io/Prioritising_livestock_diseases/","https://veterinaryrecord.bmj.com/content/179/21/547.long","https://www.wecr.wur.nl/mintrisk/", "https://www.researchgate.net/profile/H_J_W_Herman-Roermund/publication/301230446_Risk_assessment_of_seven_vector-borne_animal_diseases_for_the_Netherlands_a_structured_approach/links/5d2d736f92851cf4408723d8/Risk-assessment-of-seven-vector-borne-animal-diseases-for-the-Netherlands-a-structured-approach.pdf","https://efsa.onlinelibrary.wiley.com/doi/pdf/10.2903/sp.efsa.2019.EN-1743", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
+                        "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Semi-quantitative disease prioritisation is a well-established method, and there are several off-the-shelf tools available to do this. They generally have two dimensions; 1) Disease risks, which are parameterised across a range of criteria and 2) criteria weights, which determine the priority each criteria has in the ranking. For example, in the ECDC tool key criteria for measurements are established, such as risk of incursion, and  then assessed independently for each disease. Weights are attributed to these criteria, based on their relative importance to each other, e.g. if criteria A is deemed more important than criteria B then it will get a higher weight.  In a separate sheet a ranking of diseases will be produced based on these user inputs. The ANSES tool works in a similar way although it also provides a numeric risk estimate, and uncertainty estimate. Both tools rely on the user providing their own data for each disease, and efficacy of the output is largely reliant on the quality of these data. The SPARE tool listed below is pre-parameterised, and the user can only determine the weights attributed to each criterion. These tools perform basic prioritisation functions, but it is recommended that you do a qualitative risk assessment alongside them. Though the D2R2 tool isn’t publicly available, a paper about it is listed to offer additional information. The final example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
                     },
                     {
-                        "approach": "ECDC tool or ANSES tool for disease prioritisation",
-                        "name": ["ECDC tool", "ECDC Tool guidance", "Simplified generic prioritisation tool (France)"],
-                        "link": ["https://ecdc.europa.eu/en/publications-data/ecdc-tool-prioritisation-infectious-disease-threats", "https://www.ecdc.europa.eu/sites/portal/files/documents/Tool-for-disease-priority-ranking_handbook_0_0.pdf", "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online"],
-                        "info": "The ECDC tool will prioritise diseases based on criteria that you define youself and attribute weights to. In a seperate sheet it calculates the risk or impact of these criteria for a particular disease (also difined by the user) and ranks the diseases in terms of severity. The ANSES tool, in French, is another good way to estimate a large number of risks and impacts. It provides a numeric risk estimate, and uncertainty estimate. These tools perform basic prioritisation functions, but it is recommended that you do a qualitative risk assessment alongside."
+                        "approach": "Quantitative disease prioritisation",
+                        "name": [" Quantitative prioritisation using DALY and H-index","Stakeholder opinion in prioritisation in Quebec"],
+                        "link": ["https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0103529","https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
+                        "info": " Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Quantitative prioritisations cannot be made without good data availability. They will prioritise diseases based on quantified outputs to certain criteria (such as probability of import via different pathways and country-level prevalence) or a final quantified risk. The underlying calculations may be either deterministic or stochastic.  Generic risk assessments, which are designed to be applicable for multiple diseases, often form the basis of quantitative disease prioritisation tools.   Due to the detailed nature of these tools, they can also be used for prioritising pathways of disease risk or regions of highest risk. These tools work well with streamlined data systems, where prioritisation can be updated in real time as disease-specific trends change. "
                     },
                     {
-                        "approach": "Simplified generic prioritisation tool (France)",
-                        "name": ["Simplified generic prioritisation tool (France)"],
-                        "link": ["https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online"],
-                        "info": "The tool is written by ANSES in French. It is a good way to estimate a large number of risks and impacts. This will provide a numeric risk estimate, and uncertainty estimate."
+                        "approach": "Multi-country disease prioritisation",
+                        "name": ["WHO prioritisation for R&D","Disease prioritisation in Europe"],
+                        "link": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6106429/", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0103529"],
+                        "info": " Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Multi-country prioritisation can be qualitative, quantitative or semi-quantitative. They can be used for decision-support in preparation for, or in reaction to the spread of large epidemics. They are ultimately reliant on disclosure of data between countries, and work best in countries that are connected by an overarching administration like the European Union. The WHO prioritisation listed below looks strictly at where different countries should invest in research and development against different diseases. The second example is an application of the MINTRISK tool  at the European level. The WHO publication uses a mixture of qualitative and quantitative techniques for prioritisation while the disease prioritisation in Europe example is purely quantitative."
                     },
-                    {
+	     {
                         "approach": "Regional disease prioritisation",
-                        "name": "Simplified generic prioritisation tool (France)",
-                        "link": "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online",
-                        "info": "The tool is written by ANSES in French. It is a good way to estimate a large number of risks and impacts. This will provide a numeric risk estimate, and uncertainty estimate."
+                        "name": ["Localised One-Health disease prioritisation in India", "Stakeholder opinion in prioritisation in Quebec"],
+                        "link": ["https://www.wecr.wur.nl/mintrisk/", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
+                        "info": " Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Large countries, especially with decentralised public/veterinary health authorities, may choose to conduct prioritisation at the regional level. There may be, as in the first example below, elements of local geography that would affect disease spread. Alternatively, disease prevalence may be region-specific, splitting larger countries into zones which may have different disease prioritisations.  Local-level data may be harder  to come by, so parameterisation may rely more heavily on expert opinion. The second example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
                     },
                     {
-                        "approach": "Regional disease prioritisation",
-                        "name": "Simplified generic prioritisation tool (France)",
-                        "link": "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online",
-                        "info": "The tool is written by ANSES in French. It is a good way to estimate a large number of risks and impacts. This will provide a numeric risk estimate, and uncertainty estimate."
+                        "approach": "Cost-benefit analysis",
+                        "name": ["Cost-benefit assessment in UK pig industry"],
+                        "link": ["https://www.sciencedirect.com/science/article/pii/S0167587717308462"],
+                        "info": "Cost-benefit analysis in this context is to determine whether the benefit of measures for risk reduction, e.g. reduction in human or animal cases, are worth the cost of those measures. Usually, this begins with a risk assessment of scenarios with and without a particular measure in place, using quantitative modelling. A benchmark for cost must be established: whether priorities are financial, social, or ecological. Many analyses use a like-by-like comparison of risk reduction measures against the current, baseline cost of a process. Where loss of life or quality of life make it difficult to measure impacts of a disease financially, quality adjusted life years (QALYs) and disability adjusted life years (DALYs) are valuable comparative metrics."
                     },
                     {
-                        "approach": "Regional disease prioritisation",
-                        "name": "Simplified generic prioritisation tool (France)",
-                        "link": "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online",
-                        "info": "The tool is written by ANSES in French. It is a good way to estimate a large number of risks and impacts. This will provide a numeric risk estimate, and uncertainty estimate."
+                        "approach": "Import risk assessment: stochastic",
+                        "name": ["OIE animal health code for import risk analysis", "Entry framework bat-borne viruses", "Introduction of rabies in to Japan"],
+                        "link": ["https://www.oie.int/fileadmin/Home/eng/Health_standards/tahc/current/chapitre_import_risk_analysis.pdf", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165383","https://www.cambridge.org/core/journals/epidemiology-and-infection/article/quantitative-risk-assessment-of-the-introduction-of-rabies-into-japan-through-the-importation-of-dogs-and-cats-worldwide/C2C3A2051376156188FA1D1A4D07FE3B/core-reader"],
+                        "info": "Stochastic modelling with a focus on import (see also ‘Stochastic risk assessment’). Parameter values are randomly sampled from probability distributions to integrate data variability into the model. For import assessments, such data could be the number of animals/products exported to your country of interest, or transient movement of wildlife between countries. These combine with the underlying prevalence in the animal population and other disease-specific parameters, such as duration of the incubation period, to calculate the probability of at least one infected animal/product arriving at the country of interest. Coupled with the probability of detection on arrival (for example, by clinical symptoms), this outputs the overall import risk. The steps involved are often quite prescriptive and follow the World Organisation for Animal Health (OIE) Terrestrial/Aquatic Animal Health Code for import risk analysis. Two examples, one at the European level, and one at the country level (Japan) are listed."
                     },
                     {
-                        "approach": "Regional disease prioritisation",
-                        "name": "Simplified generic prioritisation tool (France)",
-                        "link": "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online",
-                        "info": "The tool is written by ANSES in French. It is a good way to estimate a large number of risks and impacts. This will provide a numeric risk estimate, and uncertainty estimate."
+                        "approach": "Farm-to-consumption QMRA",
+                        "name": ["Europe-level QMRA","Salmonella in Pork products","Codex Alimentarius microbial risk assessment"],
+                        "link": ["https://www.sciencedirect.com/science/article/pii/S0956713512002770","https://onlinelibrary.wiley.com/doi/abs/10.1111/risa.12522", "http://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXG%2B30-1999%252FCXG_030e_2014.pdf"],
+                        "info": "Farm-to-consumption quantitative microbiological risk assessment (QMRA) models the process of disease transmission at multiple points between animals on farm and human consumption of meat products. They could focus on one part of this system, or model the entire system. In the examples the probability of human illness is calculated based on disease prevalence, the throughput of the food-stuff of interest, and the mitigations involved in farm management, food processing and cooking. This can be done quantitatively, usually involving a stochastic element. Often the goal is to identify points in the farm-to-consumption pathway vulnerable to contamination from external sources and which, if any, control measures might be effective at reducing the probability of human illness."
+                    },
+                    {
+                        "approach": "Preliminary outbreak assessment",
+                        "name": ["OIE qualitative risk assessment framework", "Bluetongue outbreak assessment Europe"],
+                        "link": ["http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf", "https://www.gov.uk/government/publications/bluetongue-virus-in-europe"],
+                        "info": "Preliminary outbreak assessments focus on understanding a situation quickly and concisely. They are often carried out when something of significance is identified though international horizon scanning activities, e.g. a disease outbreak in a trading partner or neighbouring country. These rapid assessments estimate risk and uncertainty through data or expert opinion. They are conducted using a compressed version of the OIE qualitative risk assessment guideline. Though not a zoonosis, a number of bluetongue examples are listed to show this compressed structure. These assessments also have a larger focus on geographic aspects. They provide a snapshot of the situation at that time and suggest pathways through which a disease could reach the country/region of interest."
+                    },
+                    {
+                        "approach": "Rapid risk assessment",
+                        "name": ["ECDC rapid assessment method", "Veterinary risk assessments"],
+                        "link": ["https://www.ecdc.europa.eu/sites/default/files/documents/operational-tool-rapid-risk-assessment-methodolgy-ecdc-2019.pdf", "https://www.gov.scot/publications/foot-and-mouth-disease-veterinary-risk-assessments-vras/"],
+                        "info": "These are qualitative risk assessments made for rapid analysis.   As with all qualitative risk assessment, it follows a reductionist principle, where the process is broken down by stages in a pathway.Each step on that pathway is assigned a risk rating from negligible to very high and then recombined into a final risk score,  often performed using a risk matrix. Similarly, the risk assessor’s uncertainty at each step of the pathway is outlined and a final uncertainty is given. In the ECDC method below, stages are further simplified into probability and impact of introduction. Veterinary risk assessments are rapid risk assessments that are used for licensing essential activities during an outbreak."
+                    },
+                    {
+                        "approach": "Horizon scanning",
+                        "name": ["Horizon scanning in fishery products", "Global-level horizon scanning", "HAIRS Qualitative RA framework", "HAIRS in action"],
+                        "link": ["https://www.sciencedirect.com/science/article/pii/S0956713513004519", "https://www.sciencedirect.com/science/article/pii/S0169534717302896", "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/761106/HAIRS_risk_assessment_processes.pdf", "https://pubmed.ncbi.nlm.nih.gov/19538820/"],
+                        "info": "In general, horizon scanning is a way of predicting and prioritising future threats. Much of the process is data acquisition across numerous potential threats and changes in their global prevalence in order to obtain a cross-section of all emerging threats, as in the fisheries example listed. It may also consider changes in global factors, such as habitat fragmentation, natural disasters or political turmoil: anything that may lead to significant disturbances in disease prevalence or transmission . To understand the risks these threats pose in more detail, frameworks such as the HAIRS framework are useful. It uses a qualitative algorithm to determine the risk level of an emerging threat between negligible and very high."
                     },
                 ]
+
         }
     }
 </script>
