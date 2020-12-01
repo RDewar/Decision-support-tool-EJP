@@ -23,7 +23,7 @@
 
 <div class="popup" onclick="caveats_func()">Purpose, Scope and Caveats
     <span class="popuptext" id="myPopup">
-        <h1 class="hed">The EJP Decision Support Tool for One-Health Risk Assessment</h1>
+        <h1 class="hed">The EJP Secision Support Tool for One-Health Risk Assessment</h1>
         <h2>Purpose, scope and caveats</h2>
         <p>This tool is designed to help those who are new to the fields of risk assessment or One-Health find an appropriate risk assessent approach.</p>
         <p>This tool will:</p>
@@ -492,7 +492,31 @@
         padding: 10px;
     }
 
-    .link {
+    .onehealth {
+        padding: 10px;
+        display: block;
+        margin-top: 5px;
+        color: #4B6C86;
+        text-decoration: underline;
+
+    }
+    .animal {
+        padding: 10px;
+        display: block;
+        margin-top: 5px;
+        color: #4B6C86;
+        text-decoration: underline;
+
+    }
+    .publichealth {
+        padding: 10px;
+        display: block;
+        margin-top: 5px;
+        color: #4B6C86;
+        text-decoration: underline;
+
+    }
+    .food {
         padding: 10px;
         display: block;
         margin-top: 5px;
@@ -707,9 +731,24 @@
         border: 1px solid black;
     }
 
-    a.link {
+    a.onehealth {
         color: blue;
         background: palegoldenrod;
+        text-decoration: underline;
+    }
+    a.animal {
+        color: blue;
+        background: rgb(235, 97, 34);
+        text-decoration: underline;
+    }
+    a.food {
+        color: blue;
+        background: rgba(34, 235, 34, 0.534);
+        text-decoration: underline;
+    }
+    a.publichealth {
+        color: rgb(246, 246, 250);
+        background: rgb(34, 37, 235);
         text-decoration: underline;
     }
 
@@ -768,9 +807,10 @@
         var kelement = "";
         var o_n = object.name;
         var l_d = object.link;
+        var o_c = object.class
         for (var i = 0; i < o_n.length; i++) {
             kelement = document.createElement("a")
-            kelement.className = "link"
+            kelement.className = o_c[i]
             kelement.innerHTML = o_n[i]
             kelement.href = l_d[i]
             kelement.target = "_.blank"
@@ -797,6 +837,7 @@
                 var toolElement = getToolByName(toolData.tools, outcome) // look up by name in the tools data set
                 var nameElement = toolElement.name
                 var linkdata = toolElement.link
+                var classdata = toolElement.class
                 //for (var i = 0; i < outcome.length; i++) {
                 //Buttonelement[i] = document.createElement("button")
                 //Buttonelement[i].type = "button"
@@ -837,7 +878,7 @@
                 var linkElement = "";
                 for (var i = 0; i < nameElement.length; i++) {
                     linkElement = document.createElement("a")
-                    linkElement.className = "link"
+                    linkElement.className = classdata[i]
                     linkElement.innerHTML = nameElement[i]
                     linkElement.href = linkdata[i]
                     linkElement.target = "_.blank"
@@ -898,6 +939,9 @@
             .forEach(b => b.classList.remove("selected"));
         hideAllLists();
         showindex();
+        var indices = document.querySelectorAll("[id='indidiv']");
+        for (var i =0; i < indices.length; i++)
+        indices[i].style.display = "none";
     }
     function createstuff() {
         created = getToolByName(toolData, btnx.innerText)
@@ -1331,91 +1375,106 @@
                         "approach": "Qualitative risk assessment",
                         "name": ["OIE qualitative risk assessment framework",    "Codex Alimentarius microbial risk assessment", "RVF risk assessment EU", "RVF risk assessment UK", "Foot-and-mouth Spain"],
                         "link": ["http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf", "http://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXG%2B30-1999%252FCXG_030e_2014.pdf", "https://efsa.onlinelibrary.wiley.com/doi/full/10.2903/j.efsa.2020.6093#:~:text=Rift%20Valley%20fever%20(RVF%20)%20is,genus%2C%20to%20animals%20and%20humans.&text=The%20only%20identified%20pathways%20for,airplanes%20or%20by%20wind%20currents.", "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/902415/poa-rvf-mayotte.pdf", "https://www.sciencedirect.com/science/article/pii/S0167587708000627"],
-                        "info": "Qualitative risk assessments can be applied in any scenario from multiple geographic perspectives, but are generally best suited when more complex methods are problematic, such as when time is short or data are lacking. Most animal health and zoonosis risk assessments stem from the World Organisation for Animal Health (OIE) Terrestrial/Aquatic Animal Health Code, but other approaches such as Codex Alimentarius are also recognised.  The OIE framework consists of a release (or entry) assessment, exposure assessment, consequence assessment and risk estimation. Hazard Identification is an important first step, but the OIE framework does not consider this part of the risk assessment section of the wider risk analysis methodology which also includes risk management and risk communication.   Steps in the risk assessment process involve: establishing a risk question, drawing a risk pathway, and estimating the risks of each segment of the pathway based on evidence. These are then combined into an overall risk. The process should ideally include an estimate of the level of uncertainty. An EFSA risk assessment and a UK risk assessment on the incursion risk of rift valley fever are listed below for comparison."
+                        "info": "Qualitative risk assessments can be applied in any scenario from multiple geographic perspectives, but are generally best suited when more complex methods are problematic, such as when time is short or data are lacking. Most animal health and zoonosis risk assessments stem from the World Organisation for Animal Health (OIE) Terrestrial/Aquatic Animal Health Code, but other approaches such as Codex Alimentarius are also recognised.  The OIE framework consists of a release (or entry) assessment, exposure assessment, consequence assessment and risk estimation. Hazard Identification is an important first step, but the OIE framework does not consider this part of the risk assessment section of the wider risk analysis methodology which also includes risk management and risk communication.   Steps in the risk assessment process involve: establishing a risk question, drawing a risk pathway, and estimating the risks of each segment of the pathway based on evidence. These are then combined into an overall risk. The process should ideally include an estimate of the level of uncertainty. An EFSA risk assessment and a UK risk assessment on the incursion risk of rift valley fever are listed below for comparison.",
+                        "class": ["animal", "food", "onehealth","onehealth", "animal"]
                     },
                     {
                         "approach": "Deterministic risk assessment",
                         "name": ["OIE quantitative risk assessment framework", "Risk to animals from catering waste"],
                         "link": ["https://www.oie.int/doc/ged/D11250.PDF", "https://www.researchgate.net/publication/8399223_Risk_to_farm_animals_from_pathogens_in_composted_catering_waste_containing_meat/link/00b7d537328d24b378000000/download"],
-                        "info": "Deterministic risk assessments are quantitative analyses where the overall risk is determined by multiplying estimates for the average probabilities of each step in the pathway together. It is relatively easy to learn given a medium timescale and can provide an easily interpretable risk estimate. One main disadvantage is that, unlike more advanced quantitative methods such as stochastic risk assessment, it cannot fully integrate uncertainty in to the final estimate. Instead, the impact of uncertainty at each step on the final risk score can be  described qualitatively,  or assessed  through  modelling different scenarios using extreme biologically plausible estimates   for your parameters. Deterministic risk assessment is therefore best used when data variability and uncertainty are low, such that the resource needed for more complex methods may not be necessary. The OIE quantitative risk assessment guidance explains this approach in more detail.  Most deterministic risk assessments are not too complex and can be carried out in Excel, although the assessor is generally best advised to use whichever software they are most comfortable with.  For more complex computational models a programming language such as R, Matlab or Python is recommended."                      
+                        "info": "Deterministic risk assessments are quantitative analyses where the overall risk is determined by multiplying estimates for the average probabilities of each step in the pathway together. It is relatively easy to learn given a medium timescale and can provide an easily interpretable risk estimate. One main disadvantage is that, unlike more advanced quantitative methods such as stochastic risk assessment, it cannot fully integrate uncertainty in to the final estimate. Instead, the impact of uncertainty at each step on the final risk score can be  described qualitatively,  or assessed  through  modelling different scenarios using extreme biologically plausible estimates   for your parameters. Deterministic risk assessment is therefore best used when data variability and uncertainty are low, such that the resource needed for more complex methods may not be necessary. The OIE quantitative risk assessment guidance explains this approach in more detail.  Most deterministic risk assessments are not too complex and can be carried out in Excel, although the assessor is generally best advised to use whichever software they are most comfortable with.  For more complex computational models a programming language such as R, Matlab or Python is recommended.",
+                        "class": ["animal", "animal"]
                         },
                     {
                         "approach": "Stochastic risk assessment",
                         "name": ["OIE quantitative risk assessment framework", "E-Coli in salad bars", "Salmonellosis in Europe", "Optimising surveillance systems"],
                         "link": ["https://www.oie.int/doc/ged/D11250.PDF", "https://watermark.silverchair.com/0362-028x-73_2_274.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAtMwggLPBgkqhkiG9w0BBwagggLAMIICvAIBADCCArUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMQFSHr2hXboeY5U7-AgEQgIIChlQMb8K22IbDRTrE1Rnr2sWHfSmnICbuuTgInm-w5y0Ak9BTDj1oyGgFY17HFwwajKOPOKJaOwrfGhrzjySdHSfgtdAPV4ta1R1_2TZCmEeJtyaghyxlz9gHCY8Qn6cVOSfpPVyYGzUitUmieP40EbiQELTDZdYBJ7qtGbsaP-KA8rb9B9LQwPq4zLNsXzi2yo3QCkYMV4mnt6pi9Ol5WOboAtvmq53rjEVwZRJfTesPHBR6H50ZkY2l2G__hGL7R4Cee0HEzgeRA_Pc-AknR0EE_RGS8tFrsmK8dyoFkDhQf1C_492QL3TVTlzxDFi14HeP9s8_00N1GnY_OWnWew4-tHADTL2AirTA60pL-cugFQPqoZVGsyTLYGr1KMwEb8G3npmMykIR5my7atbBc6OuFMuygmi26LC-Pb2aKxujycrrXwuTE8swDYtNLE-AiBFYVpm4UknVCXMe2zif8bixc0sd3dv-G816hzzA7YHHM799nkR32ZRS8agmdyluRDI7S2w-Up0_-vIjPlohIWRv4xH6HuVsBJtfyRhAXGhJFBE9X26Mz6S8KMYMFz4_7KtXjYSpcsXRGPcwUEs8gsuHTjg2IMU5qOh1KuOSUmv-Y4jyymRUq0x-bZ_WOqVpuPNHsUdlzKuE0HNHyVPWnLcQ2r2EfcxTw1e9IuFkF1enk6MRQJO51WopSaL-P7HCBydQNdmAk70etdo0Ji1tc1XckFy8nCyh01izQVKcNt5_MNzq12z4uUgIy2SsjbGznNMb-lB-wK51SsE6qDvlsF_qWFz9whBZ5wh7enoyDzh1bIYGWt4kRVdfKeQEEMMFRG6nCoU8Q3mGeOFBoWxkTAxEd94G6kM", "https://www.cambridge.org/core/journals/epidemiology-and-infection/article/attributing-foodborne-salmonellosis-in-humans-to-animal-reservoirs-in-the-european-union-using-a-multicountry-stochastic-model/ACE6BB3B195065F1ACCB0B7A5B443925" ,"https://www.vetres.org/articles/vetres/pdf/2008/06/v08196.pdf"],
                         "info": "A stochastic risk assessment is one in which parameter values are sampled from a probability distribution. Therefore, rather than taking an average of your data, you can simulate data variability in your model. A distribution usually represents how parameters behave in nature more accurately than fixed values. The most common stochastic method is Monte-Carlo simulation, but Bayesian modelling is also widely used. Uncertainty can also be included into parameter values in a similar way, but it is important not to mix uncertainty and variability. A two-stage Monte-Carlo analysis can be used to separate uncertainty and variability to the extent it is possible. See the examples for more detailed explanations of each. Software designed specifically for carrying out stochastic risk assessments exist, @Risk is often recommended for those with limited programming expertise as it integrates directly with Excel spreadsheets. Programming languages such as R, python and Matlab are also regularly used and can provide more flexibility in the approach to the analyst.."
+                        ,"class": ["animal", "food", "onehealth","onehealth"]
                     },
                     {
                         "approach": "Bespoke modelling techniques",
                         "name": ["One-Health modelling overview", "African Swine Fever spread", "AMR spread in a hospital setting"],
                         "link": ["https://royalsocietypublishing.org/doi/10.1098/rstb.2016.0164", "https://www.sciencedirect.com/science/article/pii/S0167587712003650#sec0010", "https://www.sciencedirect.com/science/article/pii/S0924857999001351"],
                         "info": "When the data and expertise are available, models can be tailored to virtually any system. Good knowledge of a software program, such as R, Python or Matlab, is required. There are several types of bespoke modelling for disease risk, outlined in the first example. What parameters you focus on, and how you attribute values to these, depends heavily on the purpose of your analysis. While there are similarities to stochastic risk assessment, bespoke models generally have an  increased depth of mathematical modelling, e.g. estimating risk spatiotemporally, and/or a wider scope than just risk assessment,   to simulate complex systems such as management practices on a farm or movement of animals between farms . Examples below will describe how bespoke modelling might be employed for different systems."
+                        ,"class": ["animal", "food", "publichealth"]
                     },
                     {
                         "approach": "Qualitative disease prioritisation",
                         "name": ["Prioritisation of wildlife pathogens", "Stakeholder opinion in prioritisation in Quebec"],
                         "link": ["https://www.sciencedirect.com/science/article/pii/S0167587707000736","https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
                         "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Qualitative disease prioritisation is usually performed using a rapid risk assessment matrix, due to the large scale, need for fast results or low data availability.  Estimates for each disease may need to be obtained from expert opinion or a search of published literature. Because of the need for ranking, it is difficult to avoid some form of numerical scoring system. Diseases can be ranked purely based on the final qualitative assessment, but this does not allow for fine-grained discrimination between diseases. Instead, scoring can be done using a points-based system for different aspects of each disease, which then provides a basis for ranking and prioritising diseases, as shown in the example, where, a semi-quantitative system is used to rank the diseases based on their scores. The main difference between these and traditionally semi-quantitative approaches is that they are single-dimensional. The scoring of the disease determines its rank, but the different disease-specific criteria are not themselves weighted. This means these analyses can be more focussed on a single risk question than traditional semi-quantitative approaches. Exploring semi-quantitative approaches as well will help you understand which is most suitable to you. The second example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
+                        ,"class": ["animal", "onehealth"]
                     },
                     {
                         "approach": "Semi-quantitative disease prioritisation",
                         "name": ["ECDC tool","ECDC Tool guidance", "Simplified generic prioritisation tool (ANSES)","SPARE","SPARE explanation","D2R2", "MINTRISK ", "MINTRISK in action" ,"Comparing different tools", "Stakeholder opinion in prioritisation in Quebec"],
                         "link": ["https://ecdc.europa.eu/en/publications-data/ecdc-tool-prioritisation-infectious-disease-threats","https://www.ecdc.europa.eu/sites/portal/files/documents/Tool-for-disease-priority-ranking_handbook_0_0.pdf", "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online","https://spare-europe.shinyapps.io/Prioritising_livestock_diseases/","https://veterinaryrecord.bmj.com/content/179/21/547.long","https://www.wecr.wur.nl/mintrisk/", "https://www.researchgate.net/profile/H_J_W_Herman-Roermund/publication/301230446_Risk_assessment_of_seven_vector-borne_animal_diseases_for_the_Netherlands_a_structured_approach/links/5d2d736f92851cf4408723d8/Risk-assessment-of-seven-vector-borne-animal-diseases-for-the-Netherlands-a-structured-approach.pdf","https://efsa.onlinelibrary.wiley.com/doi/pdf/10.2903/sp.efsa.2019.EN-1743", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
                         "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Semi-quantitative disease prioritisation is a well-established method, and there are several off-the-shelf tools available to do this. They generally have two dimensions; 1) Disease risks, which are parameterised across a range of criteria and 2) criteria weights, which determine the priority each criteria has in the ranking. For example, in the ECDC tool key criteria for measurements are established, such as risk of incursion, and  then assessed independently for each disease. Weights are attributed to these criteria, based on their relative importance to each other, e.g. if criteria A is deemed more important than criteria B then it will get a higher weight.  In a separate sheet a ranking of diseases will be produced based on these user inputs. The ANSES tool works in a similar way although it also provides a numeric risk estimate, and uncertainty estimate. Both tools rely on the user providing their own data for each disease, and efficacy of the output is largely reliant on the quality of these data. The SPARE tool listed below is pre-parameterised, and the user can only determine the weights attributed to each criterion. These tools perform basic prioritisation functions, but it is recommended that you do a qualitative risk assessment alongside them. Though the D2R2 tool isn’t publicly available, a paper about it is listed to offer additional information. The final example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
+                        ,"class": ["onehealth", "onehealth", "onehealth","onehealth","onehealth","animal","onehealth","onehealth","onehealth","onehealth"]
                     },
                     {
                         "approach": "Quantitative disease prioritisation",
                         "name": [" Quantitative prioritisation using DALY and H-index","Stakeholder opinion in prioritisation in Quebec"],
                         "link": ["https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0103529","https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
                         "info": " Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Quantitative prioritisations cannot be made without good data availability. They will prioritise diseases based on quantified outputs to certain criteria (such as probability of import via different pathways and country-level prevalence) or a final quantified risk. The underlying calculations may be either deterministic or stochastic.  Generic risk assessments, which are designed to be applicable for multiple diseases, often form the basis of quantitative disease prioritisation tools.   Due to the detailed nature of these tools, they can also be used for prioritising pathways of disease risk or regions of highest risk. These tools work well with streamlined data systems, where prioritisation can be updated in real time as disease-specific trends change. "
+                        ,"class": ["onehealth", "onehealth"]
                     },
                     {
                         "approach": "Multi-country disease prioritisation",
                         "name": ["WHO prioritisation for R&D","Disease prioritisation in Europe"],
                         "link": ["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6106429/", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0103529"],
                         "info": " Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Multi-country prioritisation can be qualitative, quantitative or semi-quantitative. They can be used for decision-support in preparation for, or in reaction to the spread of large epidemics. They are ultimately reliant on disclosure of data between countries, and work best in countries that are connected by an overarching administration like the European Union. The WHO prioritisation listed below looks strictly at where different countries should invest in research and development against different diseases. The second example is an application of the MINTRISK tool  at the European level. The WHO publication uses a mixture of qualitative and quantitative techniques for prioritisation while the disease prioritisation in Europe example is purely quantitative."
+                        ,"class": ["onehealth", "onehealth"]
                     },
 	     {
                         "approach": "Regional disease prioritisation",
                         "name": ["Localised One-Health disease prioritisation in India", "Stakeholder opinion in prioritisation in Quebec"],
                         "link": ["https://www.wecr.wur.nl/mintrisk/", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
                         "info": " Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Large countries, especially with decentralised public/veterinary health authorities, may choose to conduct prioritisation at the regional level. There may be, as in the first example below, elements of local geography that would affect disease spread. Alternatively, disease prevalence may be region-specific, splitting larger countries into zones which may have different disease prioritisations.  Local-level data may be harder  to come by, so parameterisation may rely more heavily on expert opinion. The second example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
+                        ,"class": ["onehealth", "onehealth"]
                     },
                     {
                         "approach": "Cost-benefit analysis",
                         "name": ["Cost-benefit assessment in UK pig industry"],
                         "link": ["https://www.sciencedirect.com/science/article/pii/S0167587717308462"],
                         "info": "Cost-benefit analysis in this context is to determine whether the benefit of measures for risk reduction, e.g. reduction in human or animal cases, are worth the cost of those measures. Usually, this begins with a risk assessment of scenarios with and without a particular measure in place, using quantitative modelling. A benchmark for cost must be established: whether priorities are financial, social, or ecological. Many analyses use a like-by-like comparison of risk reduction measures against the current, baseline cost of a process. Where loss of life or quality of life make it difficult to measure impacts of a disease financially, quality adjusted life years (QALYs) and disability adjusted life years (DALYs) are valuable comparative metrics."
+                        ,"class": ["animal"]
                     },
                     {
                         "approach": "Import risk assessment: stochastic",
                         "name": ["OIE animal health code for import risk analysis", "Entry framework bat-borne viruses", "Introduction of rabies in to Japan"],
                         "link": ["https://www.oie.int/fileadmin/Home/eng/Health_standards/tahc/current/chapitre_import_risk_analysis.pdf", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165383","https://www.cambridge.org/core/journals/epidemiology-and-infection/article/quantitative-risk-assessment-of-the-introduction-of-rabies-into-japan-through-the-importation-of-dogs-and-cats-worldwide/C2C3A2051376156188FA1D1A4D07FE3B/core-reader"],
                         "info": "Stochastic modelling with a focus on import (see also ‘Stochastic risk assessment’). Parameter values are randomly sampled from probability distributions to integrate data variability into the model. For import assessments, such data could be the number of animals/products exported to your country of interest, or transient movement of wildlife between countries. These combine with the underlying prevalence in the animal population and other disease-specific parameters, such as duration of the incubation period, to calculate the probability of at least one infected animal/product arriving at the country of interest. Coupled with the probability of detection on arrival (for example, by clinical symptoms), this outputs the overall import risk. The steps involved are often quite prescriptive and follow the World Organisation for Animal Health (OIE) Terrestrial/Aquatic Animal Health Code for import risk analysis. Two examples, one at the European level, and one at the country level (Japan) are listed."
+                        ,"class": ["animal", "onehealth", "onehealth"]
                     },
                     {
                         "approach": "Farm-to-consumption QMRA",
                         "name": ["Europe-level QMRA","Salmonella in Pork products","Codex Alimentarius microbial risk assessment"],
                         "link": ["https://www.sciencedirect.com/science/article/pii/S0956713512002770","https://onlinelibrary.wiley.com/doi/abs/10.1111/risa.12522", "http://www.fao.org/fao-who-codexalimentarius/sh-proxy/en/?lnk=1&url=https%253A%252F%252Fworkspace.fao.org%252Fsites%252Fcodex%252FStandards%252FCXG%2B30-1999%252FCXG_030e_2014.pdf"],
                         "info": "Farm-to-consumption quantitative microbiological risk assessment (QMRA) models the process of disease transmission at multiple points between animals on farm and human consumption of meat products. They could focus on one part of this system, or model the entire system. In the examples the probability of human illness is calculated based on disease prevalence, the throughput of the food-stuff of interest, and the mitigations involved in farm management, food processing and cooking. This can be done quantitatively, usually involving a stochastic element. Often the goal is to identify points in the farm-to-consumption pathway vulnerable to contamination from external sources and which, if any, control measures might be effective at reducing the probability of human illness."
+                        ,"class": ["onehealth", "food", "food"]
                     },
                     {
                         "approach": "Preliminary outbreak assessment",
                         "name": ["OIE qualitative risk assessment framework", "Bluetongue outbreak assessment Europe"],
                         "link": ["http://www.rr-africa.oie.int/docspdf/en/2018/SIT/Handbook_on_Import_Risk_Analysis_-_OIE_-_Vol__I.pdf", "https://www.gov.uk/government/publications/bluetongue-virus-in-europe"],
                         "info": "Preliminary outbreak assessments focus on understanding a situation quickly and concisely. They are often carried out when something of significance is identified though international horizon scanning activities, e.g. a disease outbreak in a trading partner or neighbouring country. These rapid assessments estimate risk and uncertainty through data or expert opinion. They are conducted using a compressed version of the OIE qualitative risk assessment guideline. Though not a zoonosis, a number of bluetongue examples are listed to show this compressed structure. These assessments also have a larger focus on geographic aspects. They provide a snapshot of the situation at that time and suggest pathways through which a disease could reach the country/region of interest."
+                        ,"class": ["animal", "animal"]
                     },
                     {
                         "approach": "Rapid risk assessment",
                         "name": ["ECDC rapid assessment method", "Veterinary risk assessments"],
                         "link": ["https://www.ecdc.europa.eu/sites/default/files/documents/operational-tool-rapid-risk-assessment-methodolgy-ecdc-2019.pdf", "https://www.gov.scot/publications/foot-and-mouth-disease-veterinary-risk-assessments-vras/"],
                         "info": "These are qualitative risk assessments made for rapid analysis.   As with all qualitative risk assessment, it follows a reductionist principle, where the process is broken down by stages in a pathway.Each step on that pathway is assigned a risk rating from negligible to very high and then recombined into a final risk score,  often performed using a risk matrix. Similarly, the risk assessor’s uncertainty at each step of the pathway is outlined and a final uncertainty is given. In the ECDC method below, stages are further simplified into probability and impact of introduction. Veterinary risk assessments are rapid risk assessments that are used for licensing essential activities during an outbreak."
+                        ,"class": ["onehealth", "animal"]
                     },
                     {
                         "approach": "Horizon scanning",
                         "name": ["Horizon scanning in fishery products", "Global-level horizon scanning", "HAIRS Qualitative RA framework", "HAIRS in action"],
                         "link": ["https://www.sciencedirect.com/science/article/pii/S0956713513004519", "https://www.sciencedirect.com/science/article/pii/S0169534717302896", "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/761106/HAIRS_risk_assessment_processes.pdf", "https://pubmed.ncbi.nlm.nih.gov/19538820/"],
                         "info": "In general, horizon scanning is a way of predicting and prioritising future threats. Much of the process is data acquisition across numerous potential threats and changes in their global prevalence in order to obtain a cross-section of all emerging threats, as in the fisheries example listed. It may also consider changes in global factors, such as habitat fragmentation, natural disasters or political turmoil: anything that may lead to significant disturbances in disease prevalence or transmission . To understand the risks these threats pose in more detail, frameworks such as the HAIRS framework are useful. It uses a qualitative algorithm to determine the risk level of an emerging threat between negligible and very high."
+                        ,"class": ["animal", "onehealth","onehealth","onehealth"]
                     },
                 ]
 
