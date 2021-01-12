@@ -20,6 +20,14 @@
 
 
 </div>
+<div class = "key">
+    <h3>Resources Key:</h3>
+    <a class="try1">One-Health</a>
+    <a class="try2">Animal health</a>
+    <a class = "try3">Food safety</a>
+    <a class = "try4">Public Health</a>
+</div>
+
 
 <div class="popup" onclick="caveats_func()">Purpose, Scope and Caveats
     <span class="popuptext" id="myPopup">
@@ -41,16 +49,12 @@
         <p>This tool will not:</p>
         <ul>
             <li>Provide the definitive answer to any of the questions that are asked</li>
-            <li>Conduct risk assessment in of itself</li>
+            <li>Conduct risk assessment in and of itself</li>
             <li>Provide the definitive list of examples for each approach</li>
             <li>Record any of the responses given by the user</li>
             <li>Show any risk assessment resources that are not related to the field of One-Health</li>
         </ul>
         <p>The tool is designed to be simple and user-friendly. Click anywhere in this box to get started!</p>
-
-
-
-
     </span>
 </div>
 
@@ -472,11 +476,11 @@
         top: 3000;
         bottom: 0;
         width: 100%;
-        height: 2.5rem;
+        min-height: 2.5rem;
         background-color: orange;
         color: black;
         text-align: center;
-        z-index: 4;
+        z-index: 0;
     }
 
     /* Popup container */
@@ -491,7 +495,13 @@
         border-radius: 6px;
         padding: 10px;
     }
-
+    .key {
+        position: absolute;
+        top: 150px;
+        left: 800px;
+        max-width: 800px;
+        max-height: 50px;
+    }
     .onehealth {
         padding: 10px;
         display: block;
@@ -524,6 +534,41 @@
         text-decoration: underline;
 
     }
+    a.try1 {
+        color: blue;
+        background: palegoldenrod;
+        text-decoration: underline;  
+        padding: 10px;
+        display: inline-block;
+        margin-top: 5px;
+    }
+    a.try2 {
+        color: blue;
+        background: rgb(235, 97, 34);
+        text-decoration: underline; 
+        padding: 10px;
+        display: inline-block;
+        margin-top: 5px; 
+    }
+    a.try3 {
+        color: blue;
+        background: rgba(34, 235, 34, 0.534);
+        text-decoration: underline;
+        padding: 10px;
+        display: inline-block;
+        margin-top: 5px; 
+    }
+    a.try4 {
+        color: rgb(246, 246, 250);
+        background: rgb(34, 37, 235);
+        text-decoration: underline;
+        padding: 10px;
+        display: inline-block;
+        margin-top: 5px; 
+    }
+
+
+
 
     ul {
         list-style-position: outside;
@@ -541,6 +586,10 @@
     h2 {
         margin-left: 10px;
         text-align: center;
+    }
+    h3 {
+        margin-bottom: 0px;
+        margin-top: 0px;
     }
 
     p {
@@ -568,7 +617,7 @@
         position: absolute;
         left: 500;
         top: 200px;
-        margin-bottom: 270px;
+        margin-bottom: 400px;
         margin-left: 530px;
         z-index: 0;
 
@@ -1007,7 +1056,6 @@
                             "responses": [
                                 {
                                     "answer": "Multi-Country",
-                                    "question": "[DATA] What level of data is available?",
                                     "outcomes": [
                                         "Multi-country disease prioritisation"
                                     ]
@@ -1017,7 +1065,7 @@
                                     "question": "What level of data is available?",
                                     "responses": [
                                         {
-                                            "answer": "Low/limited",
+                                            "answer": "Low",
                                             "outcomes": [
                                                 "Qualitative disease prioritisation"
                                             ]
@@ -1046,10 +1094,10 @@
                         },
                         {
                             "answer": "Full risk assessment of specific disease risk",
-                            "question": "[DATA] What level of data do you have available?",
+                            "question": "[DATA] What level of data is available?",
                             "responses": [
                                 {
-                                    "answer": "Low, limited",
+                                    "answer": "Low",
                                     "question": "[EXPERTISE] What level of experience do you have with mathematical approaches to risk assessment?",
                                     "responses": [
                                         {
@@ -1104,18 +1152,19 @@
                                                                     "answer": "no",
                                                                     "question": "[EVENT] Is the threat you are assessing foodborne?",
                                                                     "responses": [
+                                                                         {
+                                                                            "answer": "yes",
+                                                                            "outcomes": [
+                                                                                "Farm-to-consumption QMRA"
+                                                                            ]
+                                                                        },
                                                                         {
                                                                             "answer": "no",
                                                                             "outcomes": [
                                                                                 "Bespoke modelling techniques"
                                                                             ]
-                                                                        },
-                                                                        {
-                                                                            "answer": "yes",
-                                                                            "outcomes": [
-                                                                                "Farm-to-consumption QMRA"
-                                                                            ]
                                                                         }
+                                                                       
                                                                     ]
                                                                 }
                                                             ]
@@ -1205,12 +1254,12 @@
                     ]
                 },
                 {
-                    "answer": "Medium (<2 weeks)",
+                    "answer": "Medium (<4 weeks)",
                     "question": "[HAZARD-ID] What activity best describes your needs?",
                     "responses": [
                         {
                             "answer": "Scanning surveillance  over a range of diseases",
-                            "question": "[DATA] What level of data do you have available?",
+                            "question": "[DATA] What level of data is available?",
                             "responses": [
                                 {
                                     "answer": "Low",
@@ -1234,7 +1283,7 @@
                         },
                         {
                             "answer": "Full risk assessment of specific disease risk",
-                            "question": "[DATA] What level of data do you have available?",
+                            "question": "[DATA] What level of data is available?",
                             "responses": [
                                 {
                                     "answer": "Low, limited",
@@ -1389,7 +1438,7 @@
                         "approach": "Stochastic risk assessment",
                         "name": ["OIE quantitative risk assessment framework", "E-Coli in salad bars", "Salmonellosis in Europe", "Optimising surveillance systems"],
                         "link": ["https://www.oie.int/doc/ged/D11250.PDF", "https://watermark.silverchair.com/0362-028x-73_2_274.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAtMwggLPBgkqhkiG9w0BBwagggLAMIICvAIBADCCArUGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMQFSHr2hXboeY5U7-AgEQgIIChlQMb8K22IbDRTrE1Rnr2sWHfSmnICbuuTgInm-w5y0Ak9BTDj1oyGgFY17HFwwajKOPOKJaOwrfGhrzjySdHSfgtdAPV4ta1R1_2TZCmEeJtyaghyxlz9gHCY8Qn6cVOSfpPVyYGzUitUmieP40EbiQELTDZdYBJ7qtGbsaP-KA8rb9B9LQwPq4zLNsXzi2yo3QCkYMV4mnt6pi9Ol5WOboAtvmq53rjEVwZRJfTesPHBR6H50ZkY2l2G__hGL7R4Cee0HEzgeRA_Pc-AknR0EE_RGS8tFrsmK8dyoFkDhQf1C_492QL3TVTlzxDFi14HeP9s8_00N1GnY_OWnWew4-tHADTL2AirTA60pL-cugFQPqoZVGsyTLYGr1KMwEb8G3npmMykIR5my7atbBc6OuFMuygmi26LC-Pb2aKxujycrrXwuTE8swDYtNLE-AiBFYVpm4UknVCXMe2zif8bixc0sd3dv-G816hzzA7YHHM799nkR32ZRS8agmdyluRDI7S2w-Up0_-vIjPlohIWRv4xH6HuVsBJtfyRhAXGhJFBE9X26Mz6S8KMYMFz4_7KtXjYSpcsXRGPcwUEs8gsuHTjg2IMU5qOh1KuOSUmv-Y4jyymRUq0x-bZ_WOqVpuPNHsUdlzKuE0HNHyVPWnLcQ2r2EfcxTw1e9IuFkF1enk6MRQJO51WopSaL-P7HCBydQNdmAk70etdo0Ji1tc1XckFy8nCyh01izQVKcNt5_MNzq12z4uUgIy2SsjbGznNMb-lB-wK51SsE6qDvlsF_qWFz9whBZ5wh7enoyDzh1bIYGWt4kRVdfKeQEEMMFRG6nCoU8Q3mGeOFBoWxkTAxEd94G6kM", "https://www.cambridge.org/core/journals/epidemiology-and-infection/article/attributing-foodborne-salmonellosis-in-humans-to-animal-reservoirs-in-the-european-union-using-a-multicountry-stochastic-model/ACE6BB3B195065F1ACCB0B7A5B443925" ,"https://www.vetres.org/articles/vetres/pdf/2008/06/v08196.pdf"],
-                        "info": "A stochastic risk assessment is one in which parameter values are sampled from a probability distribution. Therefore, rather than taking an average of your data, you can simulate data variability in your model. A distribution usually represents how parameters behave in nature more accurately than fixed values. The most common stochastic method is Monte-Carlo simulation, but Bayesian modelling is also widely used. Uncertainty can also be included into parameter values in a similar way, but it is important not to mix uncertainty and variability. A two-stage Monte-Carlo analysis can be used to separate uncertainty and variability to the extent it is possible. See the examples for more detailed explanations of each. Software designed specifically for carrying out stochastic risk assessments exist, @Risk is often recommended for those with limited programming expertise as it integrates directly with Excel spreadsheets. Programming languages such as R, python and Matlab are also regularly used and can provide more flexibility in the approach to the analyst.."
+                        "info": "A stochastic risk assessment is one in which parameter values are sampled from a probability distribution. Therefore, rather than taking an average of your data, you can simulate data variability in your model. A distribution usually represents how parameters behave in nature more accurately than fixed values. The most common stochastic method is Monte-Carlo simulation, but Bayesian modelling is also widely used. Uncertainty can also be included into parameter values in a similar way, but it is important not to mix uncertainty and variability. A two-stage Monte-Carlo analysis can be used to separate uncertainty and variability to the extent it is possible. See the examples for more detailed explanations of each. Software designed specifically for carrying out stochastic risk assessments exist; @Risk is often recommended for those with limited programming expertise as it integrates directly with Excel spreadsheets. Programming languages such as R, Python and Matlab are also regularly used and can provide more flexibility in the approach to the analyst."
                         ,"class": ["animal", "food", "onehealth","onehealth"]
                     },
                     {
@@ -1403,14 +1452,14 @@
                         "approach": "Qualitative disease prioritisation",
                         "name": ["Prioritisation of wildlife pathogens", "Stakeholder opinion in prioritisation in Quebec"],
                         "link": ["https://www.sciencedirect.com/science/article/pii/S0167587707000736","https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
-                        "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Qualitative disease prioritisation is usually performed using a rapid risk assessment matrix, due to the large scale, need for fast results or low data availability.  Estimates for each disease may need to be obtained from expert opinion or a search of published literature. Because of the need for ranking, it is difficult to avoid some form of numerical scoring system. Diseases can be ranked purely based on the final qualitative assessment, but this does not allow for fine-grained discrimination between diseases. Instead, scoring can be done using a points-based system for different aspects of each disease, which then provides a basis for ranking and prioritising diseases, as shown in the example, where, a semi-quantitative system is used to rank the diseases based on their scores. The main difference between these and traditionally semi-quantitative approaches is that they are single-dimensional. The scoring of the disease determines its rank, but the different disease-specific criteria are not themselves weighted. This means these analyses can be more focussed on a single risk question than traditional semi-quantitative approaches. Exploring semi-quantitative approaches as well will help you understand which is most suitable to you. The second example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
+                        "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Qualitative disease prioritisation is usually performed using a rapid risk assessment matrix, due to the large scale, need for fast results or low data availability.  Estimates for each disease may need to be obtained from expert opinion or a search of published literature. Because of the need for ranking, it is difficult to avoid some form of numerical scoring system. Diseases can be ranked purely based on the final qualitative assessment, but this does not allow for fine-grained discrimination between diseases. Instead, scoring can be done using a points-based system for different aspects of each disease, which then provides a basis for ranking and prioritising diseases, as shown in the first example where a semi-quantitative system is used to rank the diseases based on their scores. The main difference between these and traditionally semi-quantitative approaches is that they are single-dimensional. The scoring of the disease determines its rank, but the different disease-specific criteria are not themselves weighted. This means these analyses can be more focussed on a single risk question than traditional semi-quantitative approaches. Exploring semi-quantitative approaches as well will help you understand which is most suitable to you. The second example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
                         ,"class": ["animal", "onehealth"]
                     },
                     {
                         "approach": "Semi-quantitative disease prioritisation",
                         "name": ["ECDC tool","ECDC Tool guidance", "Simplified generic prioritisation tool (ANSES)","SPARE","SPARE explanation","D2R2", "MINTRISK ", "MINTRISK in action" ,"Comparing different tools", "Stakeholder opinion in prioritisation in Quebec"],
                         "link": ["https://ecdc.europa.eu/en/publications-data/ecdc-tool-prioritisation-infectious-disease-threats","https://www.ecdc.europa.eu/sites/portal/files/documents/Tool-for-disease-priority-ranking_handbook_0_0.pdf", "https://www.anses.fr/en/content/two-tools-prioritising-animal-diseases-available-online","https://spare-europe.shinyapps.io/Prioritising_livestock_diseases/","https://veterinaryrecord.bmj.com/content/179/21/547.long","https://www.wecr.wur.nl/mintrisk/", "https://www.researchgate.net/profile/H_J_W_Herman-Roermund/publication/301230446_Risk_assessment_of_seven_vector-borne_animal_diseases_for_the_Netherlands_a_structured_approach/links/5d2d736f92851cf4408723d8/Risk-assessment-of-seven-vector-borne-animal-diseases-for-the-Netherlands-a-structured-approach.pdf","https://efsa.onlinelibrary.wiley.com/doi/pdf/10.2903/sp.efsa.2019.EN-1743", "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190049"],
-                        "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Semi-quantitative disease prioritisation is a well-established method, and there are several off-the-shelf tools available to do this. They generally have two dimensions; 1) Disease risks, which are parameterised across a range of criteria and 2) criteria weights, which determine the priority each criteria has in the ranking. For example, in the ECDC tool key criteria for measurements are established, such as risk of incursion, and  then assessed independently for each disease. Weights are attributed to these criteria, based on their relative importance to each other, e.g. if criteria A is deemed more important than criteria B then it will get a higher weight.  In a separate sheet a ranking of diseases will be produced based on these user inputs. The ANSES tool works in a similar way although it also provides a numeric risk estimate, and uncertainty estimate. Both tools rely on the user providing their own data for each disease, and efficacy of the output is largely reliant on the quality of these data. The SPARE tool listed below is pre-parameterised, and the user can only determine the weights attributed to each criterion. These tools perform basic prioritisation functions, but it is recommended that you do a qualitative risk assessment alongside them. Though the D2R2 tool isn’t publicly available, a paper about it is listed to offer additional information. The final example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion ."
+                        "info": "Disease prioritisation is performed in order to determine which diseases pose the greatest threat to your target country-block, country, region or area. Semi-quantitative disease prioritisation is a well-established method, and there are several off-the-shelf tools available to do this. They generally have two dimensions; 1) Disease risks, which are parameterised across a range of criteria and 2) criteria weights, which determine the priority each criteria has in the ranking. For example, in the ECDC tool key criteria for measurements are established, such as risk of incursion, and  then assessed independently for each disease. Weights are attributed to these criteria, based on their relative importance to each other, e.g. if criteria A is deemed more important than criteria B then it will get a higher weight.  In a separate sheet a ranking of diseases will be produced based on these user inputs. The ANSES tool works in a similar way although it also provides a numeric risk estimate, and uncertainty estimate. Both tools rely on the user providing their own data for each disease, and efficacy of the output is largely reliant on the quality of these data. The SPARE tool listed below is pre-parameterised, and the user can only determine the weights attributed to each criterion. These tools perform basic prioritisation functions, but it is recommended that you do a qualitative risk assessment alongside them. Though the D2R2 tool isn’t publicly available, a paper about it is listed to offer additional information. The final example, while not a prioritisation itself, highlights how different stakeholder opinions can affect the ranking of diseases. This is worth considering when parameter values rely heavily on expert opinion. MINTRISK is a different in that it can perform semi-quantitative risk assessment with or without prioritisation. As such it does not use 'weighted' criteria in the same way."
                         ,"class": ["onehealth", "onehealth", "onehealth","onehealth","onehealth","animal","onehealth","onehealth","onehealth","onehealth"]
                     },
                     {
@@ -1466,7 +1515,7 @@
                         "approach": "Rapid risk assessment",
                         "name": ["ECDC rapid assessment method", "Veterinary risk assessments"],
                         "link": ["https://www.ecdc.europa.eu/sites/default/files/documents/operational-tool-rapid-risk-assessment-methodolgy-ecdc-2019.pdf", "https://www.gov.scot/publications/foot-and-mouth-disease-veterinary-risk-assessments-vras/"],
-                        "info": "These are qualitative risk assessments made for rapid analysis.   As with all qualitative risk assessment, it follows a reductionist principle, where the process is broken down by stages in a pathway.Each step on that pathway is assigned a risk rating from negligible to very high and then recombined into a final risk score,  often performed using a risk matrix. Similarly, the risk assessor’s uncertainty at each step of the pathway is outlined and a final uncertainty is given. In the ECDC method below, stages are further simplified into probability and impact of introduction. Veterinary risk assessments are rapid risk assessments that are used for licensing essential activities during an outbreak."
+                        "info": "These are qualitative risk assessments made for rapid analysis. As with all qualitative risk assessment, it follows a reductionist principle, where the process is broken down by stages in a pathway.Each step on that pathway is assigned a risk rating from negligible to very high and then recombined into a final risk score,  often performed using a risk matrix. Similarly, the risk assessor’s uncertainty at each step of the pathway is outlined and a final uncertainty is given. In the ECDC method below, stages are further simplified into probability and impact of introduction. Veterinary risk assessments are rapid risk assessments that are used for licensing essential activities during an outbreak."
                         ,"class": ["onehealth", "animal"]
                     },
                     {
